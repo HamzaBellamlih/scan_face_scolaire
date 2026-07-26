@@ -1,0 +1,160 @@
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #111827;
+  --bg-input: #020617;
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --border-color: #334155;
+
+  --primary: #3b82f6;
+  --danger: #ef4444;
+  --success: #22c55e;
+}
+
+/* ===== CONTAINER ===== */
+.form-container {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-main);
+  font-family: "Segoe UI", sans-serif;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== TITRE ===== */
+.form-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+/* ===== CARD ===== */
+.form-card {
+  background-color: var(--bg-card);
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== GRID ===== */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+/* ===== INPUT ===== */
+.form-input {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text-main);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ===== SECTION ===== */
+.section-title {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* ===== CAMERA ===== */
+.camera-container video {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.hidden-canvas {
+  display: none;
+}
+
+/* ===== PHOTO ===== */
+.photo-preview {
+  margin-top: 15px;
+  width: 200px;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.btn-camera {
+  background-color: #1e293b;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.btn-capture {
+  background-color: var(--success);
+  color: white;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #334155;
+  color: var(--text-main);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== ACTIONS ===== */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+/* ===== ERROR ===== */
+.form-error {
+  margin-top: 15px;
+  color: var(--danger);
+}
+
+/* ===== SCROLLBAR ===== */
+.form-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.form-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.form-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+.form-container {
+  scrollbar-color: rgba(255, 255, 255, 0.12) rgba(255, 255, 255, 0.03);
+  scrollbar-width: thin;
+}

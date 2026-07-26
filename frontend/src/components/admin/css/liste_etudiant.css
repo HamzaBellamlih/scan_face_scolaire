@@ -1,0 +1,250 @@
+/* =========================
+   VARIABLES MODE SOMBRE
+========================= */
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #111827;
+  --bg-table-header: #1f2933;
+  --bg-hover: #1e293b;
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --border-color: #334155;
+
+  --primary: #3b82f6;
+  --success: #22c55e;
+  --danger: #ef4444;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.list-container {
+  min-height: 100vh;
+  padding: 30px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* =========================
+   TITRE
+========================= */
+.page-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+.table-wrapper {
+  overflow-x: auto;
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================
+   TABLE
+========================= */
+.students-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  min-width: 1000px;
+  padding: 20px;
+}
+
+.list-container {
+  height: 100vh;              /* Prend toute la hauteur de l’écran */
+  overflow-y: auto;           /* Barre verticale */
+  overflow-x: hidden;         /* Pas de scroll horizontal */
+  padding-right: 10px;        /* Espace pour la barre */
+}
+
+/* Optionnel : scroll fluide */
+.list-container {
+  scroll-behavior: smooth;
+}
+
+.students-table thead {
+  background-color: var(--bg-table-header);
+}
+
+.students-table th,
+.students-table td {
+  padding: 15px 20px;
+  text-align: center;
+  border: none;
+}
+
+.students-table thead tr {
+  border-radius: 8px;
+  overflow: hidden;
+  display: table;
+  width: 100%;
+}
+
+.students-table th {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+}
+
+.students-table tbody tr {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* =========================
+   ROWS
+========================= */
+.student-row {
+  transition: all 0.3s ease;
+}
+
+.student-row:hover {
+  background-color: rgba(0, 212, 255, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+.cell-nom,
+.cell-prenom {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-main);
+  
+}
+
+/* =========================
+   PHOTO
+========================= */
+.cell-photo img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--primary);
+}
+
+.no-photo-placeholder {
+  font-size: 24px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   CELLS
+========================= */
+.cell-email {
+  font-size: 13px;
+  color: #003cff;
+}
+
+.cell-date,
+.cell-telephone {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.cell-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Boutons génériques */
+.btn-action {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #fff;
+}
+
+/* Modifier */
+.btn-edit {
+  height: 35px;
+  width: 80px;
+  background-color: var(--primary);
+}
+
+.btn-edit:hover {
+  background-color: #2563eb;
+}
+
+/* Supprimer */
+.btn-delete {
+  height: 35px;
+  width: 80px;
+  background-color: var(--danger);
+}
+
+.btn-delete:hover {
+  background-color: #dc2626;
+}
+
+/* =========================
+   BOUTON RETOUR
+========================= */
+.back-button {
+  margin-top: 25px;
+  padding: 10px 18px;
+  background-color: var(--bg-hover);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 22px;
+  }
+
+  .btn-action {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
+/* Ensure dark & light identical and consistent scrollbar */
+.list-container, .page, .page-container {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.page.dark, .page.light, .list-container.dark, .list-container.light {
+  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+  color: white;
+}
+.list-container::-webkit-scrollbar, .page::-webkit-scrollbar { width: 10px; }
+.list-container::-webkit-scrollbar-track, .page::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+.list-container::-webkit-scrollbar-thumb, .page::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 10px; }
+.list-container { scrollbar-color: rgba(255,255,255,0.12) rgba(255,255,255,0.03); scrollbar-width: thin; }

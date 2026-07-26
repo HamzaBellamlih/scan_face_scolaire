@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── SCROLLBAR ── */
+.admin-page::-webkit-scrollbar        { width: 10px; }
+.admin-page::-webkit-scrollbar-track  { background: rgba(255,255,255,0.03); }
+.admin-page::-webkit-scrollbar-thumb  { background: rgba(255,255,255,0.12); border-radius: 10px; }
+.admin-page {
+  scrollbar-color: rgba(255,255,255,0.12) rgba(255,255,255,0.03);
+  scrollbar-width: thin;
+}
+
+/* ── PAGE ── */
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 100px 20px 60px;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  transition: all 0.5s ease;
+}
+
+/* ── DARK MODE ── */
+.admin-page.dark {
+  background: linear-gradient(135deg, #1e2232, #3a3f55);
+  color: #ffffff;
+}
+
+.admin-page.dark::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(2px 2px at 5% 10%, white, transparent),
+    radial-gradient(1px 1px at 12% 25%, white, transparent),
+    radial-gradient(2px 2px at 8% 45%, white, transparent),
+    radial-gradient(1px 1px at 15% 60%, white, transparent),
+    radial-gradient(2px 2px at 10% 78%, white, transparent),
+    radial-gradient(1px 1px at 18% 88%, white, transparent),
+    radial-gradient(2px 2px at 25% 15%, white, transparent),
+    radial-gradient(1px 1px at 28% 35%, white, transparent),
+    radial-gradient(2px 2px at 42% 8%, white, transparent),
+    radial-gradient(1px 1px at 48% 22%, white, transparent),
+    radial-gradient(2px 2px at 58% 12%, white, transparent),
+    radial-gradient(2px 2px at 65% 48%, white, transparent),
+    radial-gradient(1px 1px at 60% 63%, white, transparent),
+    radial-gradient(2px 2px at 72% 18%, white, transparent),
+    radial-gradient(1px 1px at 78% 32%, white, transparent),
+    radial-gradient(2px 2px at 88% 20%, white, transparent),
+    radial-gradient(1px 1px at 92% 38%, white, transparent),
+    radial-gradient(2px 2px at 85% 85%, white, transparent);
+  background-size: 100% 200%;
+  background-position: 0% 100%;
+  opacity: 0.4;
+  animation: particleFloatUp 15s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── LIGHT MODE ── */
+.admin-page.light {
+  background: linear-gradient(135deg, #e1e1e1, #e0e7ff);
+  color: #1f2937;
+}
+
+.admin-page.light::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(2px 2px at 5% 10%, #000, transparent),
+    radial-gradient(1px 1px at 12% 25%, #000, transparent),
+    radial-gradient(2px 2px at 8% 45%, #000, transparent),
+    radial-gradient(1px 1px at 15% 60%, #000, transparent),
+    radial-gradient(2px 2px at 10% 78%, #000, transparent),
+    radial-gradient(1px 1px at 18% 88%, #000, transparent),
+    radial-gradient(2px 2px at 25% 15%, #000, transparent),
+    radial-gradient(1px 1px at 28% 35%, #000, transparent),
+    radial-gradient(2px 2px at 42% 8%, #000, transparent),
+    radial-gradient(1px 1px at 48% 22%, #000, transparent),
+    radial-gradient(2px 2px at 58% 12%, #000, transparent),
+    radial-gradient(2px 2px at 65% 48%, #000, transparent),
+    radial-gradient(1px 1px at 60% 63%, #000, transparent),
+    radial-gradient(2px 2px at 72% 18%, #000, transparent),
+    radial-gradient(1px 1px at 78% 32%, #000, transparent),
+    radial-gradient(2px 2px at 88% 20%, #000, transparent),
+    radial-gradient(1px 1px at 92% 38%, #000, transparent),
+    radial-gradient(2px 2px at 85% 85%, #000, transparent);
+  background-size: 100% 200%;
+  background-position: 0% 100%;
+  opacity: 0.25;
+  animation: particleFloatUp 15s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes particleFloatUp {
+  0%   { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* ── THEME TOGGLE BUTTON ── */
+.theme-toggle-btn {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 100;
+  font-size: 22px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-page.light .theme-toggle-btn {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(99,102,241,0.2);
+  box-shadow: 0 4px 12px rgba(99,102,241,0.15);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.2);
+}
+
+/* ── PAGE TITLE ── */
+.page-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: -0.5px;
+  animation: fadeIn 0.6s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.admin-page.light .page-title { color: #1f2937; }
+
+/* ── BUTTONS GRID ── */
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 32px;
+}
+
+/* ── ACTION BUTTONS ── */
+.action-btn {
+  background: rgba(30, 35, 50, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 48px 32px;
+  min-height: 180px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.6s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #ffffff;
+}
+
+.admin-page.light .action-btn {
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(99,102,241,0.2);
+  box-shadow: 0 25px 50px rgba(99,102,241,0.15);
+  color: #1f2937;
+}
+
+.action-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(129,140,248,0.4);
+}
+
+.admin-page.light .action-btn:hover {
+  box-shadow: 0 30px 60px rgba(99,102,241,0.3);
+}
+
+.action-btn:active { transform: translateY(-2px); }
+
+.btn-icon  { font-size: 48px; display: block; }
+.btn-label { font-size: 18px; font-weight: 600; text-align: center; letter-spacing: -0.3px; }
+
+.action-btn:nth-child(1) { border-color: rgba(99,102,241,0.3); }
+.action-btn:nth-child(2) { border-color: rgba(16,185,129,0.3); }
+.action-btn:nth-child(3) { border-color: rgba(236,72,153,0.3); }
+
+.admin-page.light .action-btn:nth-child(1) { background: rgba(99,102,241,0.08);  border-color: rgba(99,102,241,0.25); }
+.admin-page.light .action-btn:nth-child(2) { background: rgba(16,185,129,0.08);  border-color: rgba(16,185,129,0.25); }
+.admin-page.light .action-btn:nth-child(3) { background: rgba(236,72,153,0.08);  border-color: rgba(236,72,153,0.25); }
+
+/* ── BACK BUTTON ── */
+.back-btn {
+  background: rgba(30, 35, 50, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 12px;
+  padding: 14px 32px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.6s ease-out 0.2s both;
+  position: relative;
+  z-index: 1;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.admin-page.light .back-btn {
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(99,102,241,0.2);
+  box-shadow: 0 8px 24px rgba(99,102,241,0.1);
+  color: #1f2937;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(129,140,248,0.4);
+}
+
+.admin-page.light .back-btn:hover {
+  box-shadow: 0 12px 32px rgba(99,102,241,0.3);
+}
+
+.back-btn:active { transform: scale(0.98); }
+
+/* ── ANIMATION ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .buttons-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .action-btn   { min-height: 140px; }
+}
+
+@media (max-width: 640px) {
+  .admin-page    { padding: 80px 16px 50px; }
+  .theme-toggle-btn { top: 16px; right: 16px; }
+  .page-title    { font-size: 28px; margin-bottom: 36px; }
+  .action-btn    { padding: 36px 24px; min-height: 120px; border-radius: 18px; }
+  .btn-icon      { font-size: 40px; }
+  .btn-label     { font-size: 16px; }
+}

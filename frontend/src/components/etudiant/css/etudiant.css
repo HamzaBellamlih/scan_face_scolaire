@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap');
+
+/* ── SCROLLBAR ── */
+.etud-page::-webkit-scrollbar       { width: 8px; }
+.etud-page::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+.etud-page::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2);  border-radius: 10px; }
+.etud-page::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.35); }
+
+/* ── Variables Light ── */
+.etud-page.light {
+  --bg: #eef1f8;
+  --card: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --input-bg: #f8fafc;
+  --input-border: #e2e8f0;
+  --header-grad: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+  --stat-card-bg: #ffffff;
+  --action-btn-bg: #ffffff;
+  --action-btn-hover: #f8fafc;
+  --note-ok: #10b981;
+  --note-bad: #ef4444;
+}
+
+/* ── Variables Dark ── */
+.etud-page.dark {
+  --bg: #0d1117;
+  --card: #161b27;
+  --text: #e2e8f0;
+  --text-muted: #8892a4;
+  --input-bg: #0f1520;
+  --input-border: #1e2d45;
+  --header-grad: linear-gradient(135deg, #064e3b 0%, #065f46 40%, #047857 100%);
+  --stat-card-bg: #1a2332;
+  --action-btn-bg: #1a2332;
+  --action-btn-hover: #222d40;
+  --note-ok: #34d399;
+  --note-bad: #f87171;
+}
+
+/* ── PAGE ── */
+.etud-page {
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) rgba(255,255,255,0.05);
+  background: var(--bg);
+  color: var(--text);
+  padding: 40px 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.etud-wrapper { max-width: 1100px; margin: 0 auto; }
+
+/* ── HEADER ── */
+.etud-header {
+  background: var(--header-grad);
+  border-radius: 18px;
+  padding: 34px 48px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.etud-header::before {
+  content: '';
+  position: absolute;
+  width: 340px; height: 340px;
+  top: -120px; right: -60px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+}
+
+.etud-header-icon  { font-size: 50px; z-index: 1; }
+.etud-header-info  { flex: 1; z-index: 1; text-align: center; }
+.etud-header-title { font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 6px; }
+.etud-header-sub   { font-size: 13.5px; color: rgba(255,255,255,0.60); margin: 0; }
+
+.etud-toggle {
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.22);
+  color: #fff;
+  font-size: 19px;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.2s;
+}
+.etud-toggle:hover { background: rgba(255,255,255,0.22); }
+
+/* ── STATS ── */
+.etud-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.etud-stat-card {
+  background: var(--stat-card-bg);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.etud-stat-icon  { font-size: 40px; }
+.etud-stat-value { font-size: 32px; font-weight: 800; }
+.etud-stat-label { font-size: 13px; color: var(--text-muted); }
+
+/* ── ACTIONS ── */
+.etud-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.etud-action-btn {
+  background: var(--action-btn-bg);
+  border: none;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  color: var(--text);
+}
+
+.etud-action-btn:hover {
+  background: var(--action-btn-hover);
+  transform: translateY(-4px);
+}
+
+.etud-action-icon { font-size: 48px; }
+.etud-action-text { font-size: 16px; font-weight: 600; }
+
+/* ── BACK BUTTON ── */
+.etud-back-btn {
+  background: transparent;
+  border: 1.5px solid var(--input-border);
+  color: var(--text-muted);
+  width: 100%;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.etud-page.light .etud-back-btn:hover {
+  border-color: #10b981;
+  color: #0f172a;
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16,185,129,0.15);
+}
+
+.etud-page.dark .etud-back-btn:hover {
+  border-color: #34d399;
+  color: #e2e8f0;
+  background: #0f1520;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52,211,153,0.15);
+}
+
+/* ── CARD ── */
+.etud-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+/* ── TABLE ── */
+.etud-table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--input-border);
+}
+
+.etud-table { width: 100%; border-collapse: collapse; }
+
+.etud-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--input-bg);
+  border-bottom: 2px solid var(--input-border);
+}
+
+.etud-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--input-border);
+}
+
+/* ── BADGES ── */
+.etud-note-badge,
+.etud-type-badge,
+.etud-justif-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.etud-note-ok   { background: #f0fdf4; color: var(--note-ok); }
+.etud-note-bad  { background: #fef2f2; color: var(--note-bad); }
+.etud-type-absence { background: #fef2f2; color: #ef4444; }
+.etud-type-retard  { background: #fff7ed; color: #f59e0b; }
+.etud-justif-ok    { background: #f0fdf4; color: #10b981; }
+.etud-justif-non   { background: #fff7ed; color: #f59e0b; }
+
+/* ── LOADING ── */
+.etud-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+}
+
+.etud-spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--input-border);
+  border-top-color: #10b981;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .etud-stats   { grid-template-columns: 1fr; }
+  .etud-actions { grid-template-columns: 1fr; }
+}

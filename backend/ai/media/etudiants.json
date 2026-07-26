@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "nom": "Bellamlih",
+        "prenom": "Hamza",
+        "email": "bellamlihhamza123@gmail.com",
+        "date_naissance": "2004-08-05",
+        "lieu_naissance": "Fes",
+        "niveau_etude": "Master",
+        "classe": "B",
+        "telephone": "0772374352",
+        "photo": "/ai/media/etudiants/Bellamlih_Hamza_bfc266d3f22e41fe9e2332769b79f536.png"
+    }
+]

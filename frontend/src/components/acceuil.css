@@ -1,0 +1,487 @@
+/* Reset et configuration de base */
+
+/* Import de la police Plus Jakarta Sans */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* Reset et configuration de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Container principal */
+.choix-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+/* Mode Dark */
+.choix-container.dark {
+  background: linear-gradient(135deg, #1e2232, #3a3f55);
+}
+
+.choix-container.dark::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  z-index: 0;
+}
+
+/* Effet de particules en mode dark */
+.choix-container.dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 5% 10%, white, transparent),
+    radial-gradient(1px 1px at 12% 25%, white, transparent),
+    radial-gradient(2px 2px at 8% 45%, white, transparent),
+    radial-gradient(1px 1px at 15% 60%, white, transparent),
+    radial-gradient(2px 2px at 10% 78%, white, transparent),
+    radial-gradient(1px 1px at 18% 88%, white, transparent),
+    radial-gradient(2px 2px at 25% 15%, white, transparent),
+    radial-gradient(1px 1px at 28% 35%, white, transparent),
+    radial-gradient(2px 2px at 22% 52%, white, transparent),
+    radial-gradient(1px 1px at 30% 68%, white, transparent),
+    radial-gradient(2px 2px at 32% 82%, white, transparent),
+    radial-gradient(1px 1px at 35% 95%, white, transparent),
+    radial-gradient(2px 2px at 42% 8%, white, transparent),
+    radial-gradient(1px 1px at 48% 22%, white, transparent),
+    radial-gradient(2px 2px at 45% 40%, white, transparent),
+    radial-gradient(1px 1px at 50% 55%, white, transparent),
+    radial-gradient(2px 2px at 52% 72%, white, transparent),
+    radial-gradient(1px 1px at 47% 90%, white, transparent),
+    radial-gradient(2px 2px at 58% 12%, white, transparent),
+    radial-gradient(1px 1px at 62% 28%, white, transparent),
+    radial-gradient(2px 2px at 65% 48%, white, transparent),
+    radial-gradient(1px 1px at 60% 63%, white, transparent),
+    radial-gradient(2px 2px at 68% 75%, white, transparent),
+    radial-gradient(1px 1px at 63% 92%, white, transparent),
+    radial-gradient(2px 2px at 72% 18%, white, transparent),
+    radial-gradient(1px 1px at 78% 32%, white, transparent),
+    radial-gradient(2px 2px at 75% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 65%, white, transparent),
+    radial-gradient(2px 2px at 82% 80%, white, transparent),
+    radial-gradient(1px 1px at 77% 95%, white, transparent),
+    radial-gradient(2px 2px at 88% 20%, white, transparent),
+    radial-gradient(1px 1px at 92% 38%, white, transparent),
+    radial-gradient(2px 2px at 90% 58%, white, transparent),
+    radial-gradient(1px 1px at 95% 70%, white, transparent),
+    radial-gradient(2px 2px at 85% 85%, white, transparent),
+    radial-gradient(1px 1px at 93% 98%, white, transparent);
+  background-size: 100% 200%;
+  background-position: 0% 100%;
+  opacity: 0.4;
+  animation: particleFloatUp 15s linear infinite;
+  z-index: 0;
+}
+
+/* Mode Light */
+.choix-container.light {
+  background: linear-gradient(135deg, #e1e1e1, #e0e7ff);
+}
+
+.choix-container.light::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  z-index: 0;
+}
+
+/* Effet de particules en mode light */
+.choix-container.light::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 5% 10%, #000000, transparent),
+    radial-gradient(1px 1px at 12% 25%, #000000, transparent),
+    radial-gradient(2px 2px at 8% 45%, #000000, transparent),
+    radial-gradient(1px 1px at 15% 60%, #000000, transparent),
+    radial-gradient(2px 2px at 10% 78%, #000000, transparent),
+    radial-gradient(1px 1px at 18% 88%, #000000, transparent),
+    radial-gradient(2px 2px at 25% 15%, #000000, transparent),
+    radial-gradient(1px 1px at 28% 35%, #000000, transparent),
+    radial-gradient(2px 2px at 22% 52%, #000000, transparent),
+    radial-gradient(1px 1px at 30% 68%, #000000, transparent),
+    radial-gradient(2px 2px at 32% 82%, #000000, transparent),
+    radial-gradient(1px 1px at 35% 95%, #000000, transparent),
+    radial-gradient(2px 2px at 42% 8%, #000000, transparent),
+    radial-gradient(1px 1px at 48% 22%, #000000, transparent),
+    radial-gradient(2px 2px at 45% 40%, #000000, transparent),
+    radial-gradient(1px 1px at 50% 55%, #000000, transparent),
+    radial-gradient(2px 2px at 52% 72%, #000000, transparent),
+    radial-gradient(1px 1px at 47% 90%, #000000, transparent),
+    radial-gradient(2px 2px at 58% 12%, #000000, transparent),
+    radial-gradient(1px 1px at 62% 28%, #000000, transparent),
+    radial-gradient(2px 2px at 65% 48%, #000000, transparent),
+    radial-gradient(1px 1px at 60% 63%, #000000, transparent),
+    radial-gradient(2px 2px at 68% 75%, #000000, transparent),
+    radial-gradient(1px 1px at 63% 92%, #000000, transparent),
+    radial-gradient(2px 2px at 72% 18%, #000000, transparent),
+    radial-gradient(1px 1px at 78% 32%, #000000, transparent),
+    radial-gradient(2px 2px at 75% 50%, #000000, transparent),
+    radial-gradient(1px 1px at 80% 65%, #000000, transparent),
+    radial-gradient(2px 2px at 82% 80%, #000000, transparent),
+    radial-gradient(1px 1px at 77% 95%, #000000, transparent),
+    radial-gradient(2px 2px at 88% 20%, #000000, transparent),
+    radial-gradient(1px 1px at 92% 38%, #000000, transparent),
+    radial-gradient(2px 2px at 90% 58%, #000000, transparent),
+    radial-gradient(1px 1px at 95% 70%, #000000, transparent),
+    radial-gradient(2px 2px at 85% 85%, #000000, transparent),
+    radial-gradient(1px 1px at 93% 98%, #000000, transparent);
+  background-size: 100% 200%;
+  background-position: 0% 100%;
+  opacity: 0.3;
+  animation: particleFloatUp 15s linear infinite;
+  z-index: 0;
+}
+
+@keyframes particleFloatUp {
+  0% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Toggle Container */
+.toggle-container {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.choix-container.light .toggle-label {
+  color: #1f2937;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  transition: 0.4s;
+  border-radius: 34px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .toggle-slider {
+  background: linear-gradient(135deg, #1310b9 0%, #343ed3 100%);
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+/* Titre de la page */
+.choix-container h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: -0.5px;
+  animation: fadeIn 0.6s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.choix-container.light h1 {
+  color: #1f2937;
+}
+
+/* Groupe de boutons */
+.btn-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 32px;
+  margin-left: 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Boutons */
+.btn {
+  background: rgba(30, 35, 50, 0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 48px 40px;
+  width: 70%;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.6s ease-out;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: -0.5px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.choix-container.light .btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.15);
+  color: #1f2937;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(129, 140, 248, 0.4);
+}
+
+.choix-container.light .btn:hover {
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Styles spécifiques pour les boutons Admin et Client */
+.admin-btn {
+  height: 70px;
+  background: rgba(30, 35, 50, 0.85);
+}
+
+.choix-container.dark .admin-btn {
+  height: 120px;
+  width: 300px;
+  font-size: 30px;
+}
+
+.choix-container.light .admin-btn {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.admin-btn:hover {
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.5);
+}
+
+.administrateur-btn {
+  height: 70px;
+  background: rgba(30, 35, 50, 0.85);
+}
+
+.choix-container.dark .administrateur-btn {
+  height: 120px;
+  width: 350px;
+  font-size: 30px;
+}
+
+.choix-container.light .administrateur-btn {
+  background: rgba(99, 241, 125, 0.1);
+  border: 1px solid rgba(99, 241, 123, 0.3);
+  font-size: 30px;
+  height: 120px;
+  width: 350px;
+}
+
+.administrateur-btn:hover {
+  box-shadow: 0 12px 28px rgba(99, 241, 104, 0.5);
+}
+
+.client-btn {
+  font-size: 20px;
+  background: rgba(30, 35, 50, 0.85);
+}
+
+.choix-container.light .client-btn {
+  background: rgba(236, 72, 153, 0.1);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.choix-container.dark .client-btn {
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.client-btn:hover {
+  box-shadow: 0 12px 28px rgba(236, 72, 153, 0.5);
+}
+
+.enseignant-btn{
+  font-size: 20px;
+  background: rgba(30, 30, 50, 0.85);
+}
+
+.choix-container.light .enseignant-btn {
+  background: rgba(241, 239, 99, 0.1);
+  border: 1px solid rgba(224, 241, 99, 0.3);
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.choix-container.dark .enseignant-btn {
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.enseignant-btn:hover {
+  box-shadow: 0 12px 28px rgba(241, 234, 99, 0.5);
+}
+
+.etudiant-btn{
+  font-size: 20px;
+  background: rgba(50, 43, 30, 0.85);
+}
+
+.choix-container.light .etudiant-btn {
+  background: rgba(99, 241, 239, 0.1);
+  border: 1px solid rgba(99, 234, 241, 0.3);
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.choix-container.dark .etudiant-btn {
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.etudiant-btn:hover {
+  box-shadow: 0 12px 28px rgba(99, 234, 241, 0.5);
+}
+
+.etudiant-btn{
+  font-size: 20px;
+  background: rgba(30, 30, 50, 0.85);
+}
+
+.choix-container.light .etudiant-btn {
+  background: rgba(99, 241, 239, 0.1);
+  border: 1px solid rgba(99, 241, 236, 0.3);
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.choix-container.dark .etudiant-btn {
+  font-size: 30px;
+  height: 120px;
+  width: 300px;
+}
+
+.etudiant-btn:hover {
+  box-shadow: 0 12px 28px rgba(99, 241, 241, 0.5);
+}
+
+/* Animation d'entrée */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .btn-group {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    padding: 32px 24px;
+  }
+
+  .choix-container h1 {
+    font-size: 28px;
+  }
+
+  .toggle-container {
+    top: 20px;
+    right: 20px;
+  }
+}

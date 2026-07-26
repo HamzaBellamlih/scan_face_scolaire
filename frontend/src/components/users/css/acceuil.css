@@ -1,0 +1,402 @@
+/* ===================================== */
+/* CSS VARIABLES - Couleurs & Espacements */
+/* ===================================== */
+:root {
+    /* Couleurs Dark */
+    --dark-bg-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b4a7d 50%, #5c3d5e 100%);
+    --dark-particle-1: white;
+    --dark-card-bg: rgba(30, 35, 50, 0.85);
+    
+    /* Couleurs Light */
+    --light-bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #ddd6fe 50%, #fce7f3 100%);
+    --light-particle-1: #6366f1;
+    --light-particle-2: #8b5cf6;
+    --light-card-bg: rgba(255, 255, 255, 0.9);
+    --light-text: #1f2937;
+    --light-border: rgba(99, 102, 241, 0.2);
+    
+    /* Couleurs Générales */
+    --text-dark: #ffffff;
+    --border-dark: rgba(255, 255, 255, 0.1);
+    --toggle-gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    --toggle-shadow: rgba(16, 185, 129, 0.4);
+    --accent-hover: rgba(129, 140, 248, 0.4);
+    
+    /* Polices */
+    --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    
+    /* Espacements */
+    --spacing-xs: 12px;
+    --spacing-sm: 20px;
+    --spacing-md: 24px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    --spacing-2xl: 48px;
+    
+    /* Bordures & Shadows */
+    --radius-lg: 24px;
+    --radius-full: 50%;
+    --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 12px 28px rgba(129, 140, 248, 0.4);
+    --blur-md: blur(20px);
+}
+
+/* ===================================== */
+/* RESET ET CONFIGURATION DE BASE */
+/* ===================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ===================================== */
+/* CONTAINER PRINCIPAL */
+/* ===================================== */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--spacing-sm);
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+/* Mode Dark */
+.page-container.dark {
+    background: var(--dark-bg-gradient);
+}
+
+/* Mode Light */
+.page-container.light {
+    background: var(--light-bg-gradient);
+}
+
+/* Particules - Mixin réutilisable */
+.page-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-size: 100% 200%;
+    background-position: 0% 100%;
+    animation: particleFloatUp 15s linear infinite;
+    z-index: 0;
+}
+
+.page-container.dark::before {
+    background-image: 
+        radial-gradient(2px 2px at 5% 10%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 12% 25%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 8% 45%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 15% 60%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 10% 78%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 18% 88%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 25% 15%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 28% 35%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 22% 52%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 30% 68%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 32% 82%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 35% 95%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 42% 8%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 48% 22%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 45% 40%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 50% 55%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 52% 72%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 47% 90%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 58% 12%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 62% 28%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 65% 48%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 60% 63%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 68% 75%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 63% 92%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 72% 18%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 78% 32%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 75% 50%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 80% 65%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 82% 80%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 77% 95%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 88% 20%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 92% 38%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 90% 58%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 95% 70%, var(--dark-particle-1), transparent),
+        radial-gradient(2px 2px at 85% 85%, var(--dark-particle-1), transparent),
+        radial-gradient(1px 1px at 93% 98%, var(--dark-particle-1), transparent);
+    opacity: 0.4;
+}
+
+.page-container.light::before {
+    background-image: 
+        radial-gradient(2px 2px at 5% 10%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 12% 25%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 8% 45%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 15% 60%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 10% 78%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 18% 88%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 25% 15%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 28% 35%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 22% 52%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 30% 68%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 32% 82%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 35% 95%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 42% 8%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 48% 22%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 45% 40%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 50% 55%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 52% 72%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 47% 90%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 58% 12%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 62% 28%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 65% 48%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 60% 63%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 68% 75%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 63% 92%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 72% 18%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 78% 32%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 75% 50%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 80% 65%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 82% 80%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 77% 95%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 88% 20%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 92% 38%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 90% 58%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 95% 70%, var(--light-particle-2), transparent),
+        radial-gradient(2px 2px at 85% 85%, var(--light-particle-1), transparent),
+        radial-gradient(1px 1px at 93% 98%, var(--light-particle-2), transparent);
+    opacity: 0.3;
+}
+
+/* ===================================== */
+/* ANIMATIONS */
+/* ===================================== */
+@keyframes particleFloatUp {
+    0% { background-position: 0% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================== */
+/* TITRE DE LA PAGE */
+/* ===================================== */
+.page-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    letter-spacing: -0.5px;
+    animation: fadeIn 0.6s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+.page-container.light .page-title {
+    color: var(--light-text);
+}
+
+/* ===================================== */
+/* TOGGLE CONTAINER & SWITCH */
+/* ===================================== */
+.toggle-container {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    z-index: 10;
+}
+
+.toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.page-container.light .toggle-label {
+    color: var(--light-text);
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: var(--toggle-gradient);
+    transition: 0.4s;
+    border-radius: 34px;
+    box-shadow: 0 4px 12px var(--toggle-shadow);
+}
+
+.toggle-slider::before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: var(--radius-full);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .toggle-slider::before {
+    transform: translateX(26px);
+}
+
+/* ===================================== */
+/* GRILLE DES ACTIONS */
+/* ===================================== */
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    z-index: 1;
+}
+
+/* ===================================== */
+/* CARTES (DARK & LIGHT) - Mixin */
+/* ===================================== */
+.action-card,
+.retour-card {
+    background: var(--dark-card-bg);
+    backdrop-filter: var(--blur-md);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.6s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+.action-card:hover,
+.retour-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.action-card:active,
+.retour-card:active {
+    transform: translateY(0);
+}
+
+/* Styles Light pour les cartes */
+.page-container.light .action-card,
+.page-container.light .retour-card {
+    background: var(--light-card-bg);
+    border: 1px solid var(--light-border);
+    box-shadow: 0 25px 50px rgba(99, 102, 241, 0.15);
+}
+
+.page-container.light .action-card:hover,
+.page-container.light .retour-card:hover {
+    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.3);
+}
+
+/* ===================================== */
+/* CARTE D'ACTION */
+/* ===================================== */
+.action-card {
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    width: 100%;
+}
+
+.action-card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.page-container.light .action-card h2 {
+    color: var(--light-text);
+}
+
+/* ===================================== */
+/* CARTE DE RETOUR */
+/* ===================================== */
+.retour-card {
+    padding: var(--spacing-xs) var(--spacing-xl);
+}
+
+.retour-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.page-container.light .retour-card h2 {
+    color: var(--light-text);
+}
+
+/* ===================================== */
+/* RESPONSIVE */
+/* ===================================== */
+@media (max-width: 640px) {
+    :root {
+        --spacing-lg: 20px;
+    }
+
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-card {
+        padding: var(--spacing-xl) 24px;
+    }
+
+    .page-title {
+        font-size: 28px;
+    }
+
+    .toggle-container {
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+    }
+}

@@ -1,0 +1,59 @@
+# ==========================================
+# 1. FRONTEND & NODE (React, Vue, etc.)
+# ==========================================
+node_modules/
+.pnp
+.pnp.js
+/coverage
+/build
+/dist
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# 2. BACKEND PYTHON (Django, FastAPI, venv)
+# ==========================================
+# Environnements virtuels (Crucial pour éviter les fichiers géants !)
+backend/venv/
+venv/
+.venv/
+env/
+ENV/
+ENV_DIR/
+
+# Fichiers de cache Python
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Base de données locale (ne pas pousser SQLite)
+*.sqlite3
+db.sqlite3
+
+# ==========================================
+# 3. VARIABLES D'ENVIRONNEMENT (Sécurité)
+# ==========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.mail
+
+# ==========================================
+# 4. SYSTÈME ET IDE (OS & Éditeurs de code)
+# ==========================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

@@ -1,0 +1,41 @@
+{
+  "etudiants": {
+    "0": {
+      "id": 0,
+      "nom": "Bellamlih",
+      "prenom": "Hamza",
+      "nom_complet": "Hamza Bellamlih",
+      "type": "etudiant",
+      "email": "",
+      "telephone": "",
+      "photo": "etudiants/Bellamlih_Hamza_bfc266d3f22e41fe9e2332769b79f536.png",
+      "image_file": "etudiants/Bellamlih_Hamza_bfc266d3f22e41fe9e2332769b79f536.png",
+      "date_naissance": "",
+      "lieu_naissance": "",
+      "niveau_etude": "",
+      "niveau": "",
+      "classe": "",
+      "assurance": null
+    }
+  },
+  "enseignants": {
+    "1": {
+      "id": 1,
+      "nom": "Bellamlih Mamou",
+      "prenom": "Mohammed Hamza",
+      "nom_complet": "Mohammed Hamza Bellamlih Mamou",
+      "type": "enseignant",
+      "email": "",
+      "telephone": "",
+      "photo": "enseignants/Bellamlih Mamou_Mohammed Hamza_d8650ca9c8a3418d9bc7c43b46d12b12.png",
+      "image_file": "enseignants/Bellamlih Mamou_Mohammed Hamza_d8650ca9c8a3418d9bc7c43b46d12b12.png",
+      "date_naissance": "",
+      "lieu_naissance": "",
+      "matiere": "",
+      "assurance": null,
+      "paiements": null,
+      "date_creation": ""
+    }
+  },
+  "personnes": {}
+}
