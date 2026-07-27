@@ -1,102 +1,180 @@
-/* Variables pour Dark Mode */
-.dark-mode {
-  --bg-primary: #0d0d0d;
-  --bg-secondary: rgba(255, 255, 255, 0.1);
+/* ==========================================================================
+   1. IMPORTS & VARIABLES CENTRALISÉES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Typographie & Transitions */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --transition-speed: 0.3s;
+  --radius-btn: 30px;
+  --radius-box: 24px;
+
+  /* Thème Dark (Par défaut) */
+  --bg-gradient: linear-gradient(135deg, #1e2232, #3a3f55);
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.5);
-  --accent-primary: #00ffff;
-  --accent-secondary: #00ff80;
-  --border-color: rgba(255, 255, 255, 0.5);
-  --shadow-color: rgba(0, 255, 255, 0.5);
-  --button-text: #000000;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --box-bg: rgba(30, 35, 50, 0.85);
+  --box-border: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  
+  /* Couleurs d'accentuation */
+  --accent-primary: #6366f1;
+  --accent-secondary: #4f46e5;
+  --particle-color: #ffffff;
+  --particle-opacity: 0.4;
 }
 
-/* Variables pour Light Mode */
-.light-mode {
-  --bg-primary: #f5f5f5;
-  --bg-secondary: rgba(255, 255, 255, 0.9);
-  --text-primary: #1a1a1a;
-  --text-secondary: rgba(0, 0, 0, 0.5);
-  --accent-primary: #0099ff;
-  --accent-secondary: #00cc66;
-  --border-color: rgba(0, 0, 0, 0.3);
-  --shadow-color: rgba(0, 153, 255, 0.3);
-  --button-text: #ffffff;
+/* Thème Light */
+.login-container.light {
+  --bg-gradient: linear-gradient(135deg, #e1e1e1, #e0e7ff);
+  --text-primary: #1f2937;
+  --text-secondary: rgba(31, 41, 55, 0.6);
+  --box-bg: rgba(255, 255, 255, 0.9);
+  --box-border: rgba(99, 102, 241, 0.2);
+  --shadow-color: rgba(99, 102, 241, 0.15);
+  
+  --particle-color: #000000;
+  --particle-opacity: 0.2;
 }
 
-* {
+/* ==========================================================================
+   2. RESET & STYLES DE BASE
+   ========================================================================== */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
 }
 
+body {
+  font-family: var(--font-main);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   3. CONTENEUR PRINCIPAL & FOND ANIME
+   ========================================================================== */
 .login-container {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--bg-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  min-height: 100vh;
   padding: 20px;
+  position: relative;
+  background: var(--bg-gradient);
+  z-index: 1;
+  transition: background var(--transition-speed) ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) rgba(255, 255, 255, 0.03);
 }
 
-/* Bouton de basculement de thème */
+.login-container::-webkit-scrollbar {
+  width: 8px;
+}
+.login-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+.login-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+/* Effet de particules (Consistant avec le reste de l'application) */
+.login-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 5% 10%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 12% 25%, var(--particle-color), transparent),
+    radial-gradient(2px 2px at 8% 45%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 15% 60%, var(--particle-color), transparent),
+    radial-gradient(2px 2px at 25% 15%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 28% 35%, var(--particle-color), transparent),
+    radial-gradient(2px 2px at 42% 8%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 48% 22%, var(--particle-color), transparent),
+    radial-gradient(2px 2px at 65% 48%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 78% 32%, var(--particle-color), transparent),
+    radial-gradient(2px 2px at 88% 20%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 95% 70%, var(--particle-color), transparent);
+  background-size: 100% 200%;
+  opacity: var(--particle-opacity);
+  animation: particleFloatUp 15s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes particleFloatUp {
+  0% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* ==========================================================================
+   4. INTERRUPTEUR DE THÈME (THEME TOGGLE)
+   ========================================================================== */
 .theme-toggle {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
+  top: 30px;
+  right: 30px;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  backdrop-filter: blur(20px);
+  transition: transform var(--transition-speed) ease, border-color var(--transition-speed) ease;
   z-index: 10;
 }
 
 .theme-toggle:hover {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 15px var(--shadow-color);
-  transform: rotate(180deg);
+  transform: rotate(180deg) scale(1.05);
 }
 
 .theme-toggle svg {
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-speed) ease;
 }
 
-/* Conteneur du formulaire */
+/* ==========================================================================
+   5. FORMULAIRE DE CONNEXION (LOGIN BOX)
+   ========================================================================== */
 .login-box {
-  background: var(--bg-secondary);
-  padding: 50px 40px;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px var(--shadow-color);
+  position: relative;
+  z-index: 1;
+  background: var(--box-bg);
+  padding: 48px 40px;
+  border-radius: var(--radius-box);
+  box-shadow: 0 25px 50px var(--shadow-color);
   width: 100%;
   max-width: 420px;
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--box-border);
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .login-box h2 {
   text-align: center;
   color: var(--text-primary);
-  margin-bottom: 40px;
-  font-size: 32px;
-  font-weight: 600;
-  transition: color 0.3s ease;
+  margin-bottom: 36px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-/* Groupes d'input avec labels flottants */
+/* Input avec labels flottants */
 .input-group {
   position: relative;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 
 .input-group input {
@@ -106,9 +184,10 @@
   border: none;
   outline: none;
   color: var(--text-primary);
+  font-family: var(--font-main);
   font-size: 16px;
-  border-bottom: 2px solid var(--border-color);
-  transition: all 0.4s ease;
+  border-bottom: 2px solid var(--box-border);
+  transition: border-color var(--transition-speed) ease;
 }
 
 .input-group input:focus,
@@ -121,9 +200,10 @@
   left: 0;
   top: 12px;
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 500;
   pointer-events: none;
-  transition: all 0.4s ease;
+  transition: all var(--transition-speed) ease;
 }
 
 .input-group input:focus + label,
@@ -134,44 +214,88 @@
   font-weight: 600;
 }
 
-/* Bouton de soumission */
+/* ==========================================================================
+   6. BOUTONS & MESSAGES
+   ========================================================================== */
 .submit-btn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   border: none;
-  border-radius: 30px;
-  color: var(--button-text);
-  font-size: 16px;
+  border-radius: var(--radius-btn);
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.4s ease;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
   margin-top: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--shadow-color);
+  box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .submit-btn:active {
   transform: translateY(0);
 }
 
-/* Message de retour */
+.back-button {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid var(--box-border);
+  border-radius: var(--radius-btn);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all var(--transition-speed) ease;
+}
+
+.back-button:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.08);
+  transform: translateY(-2px);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
 .message {
   text-align: center;
   margin-top: 20px;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 14px;
   color: var(--text-primary);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
   animation: slideIn 0.3s ease;
+}
+
+/* ==========================================================================
+   7. ANIMATIONS & RESPONSIVE
+   ========================================================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideIn {
@@ -185,79 +309,20 @@
   }
 }
 
-/* Bouton retour */
-.back-button {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  border: 2px solid var(--border-color);
-  border-radius: 30px;
-  color: var(--text-primary);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 15px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.back-button:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-  background: rgba(0, 255, 255, 0.05);
-  transform: translateY(-2px);
-}
-
-.back-button:active {
-  transform: translateY(0);
-}
-
-/* Responsive */
 @media (max-width: 480px) {
   .login-box {
-    padding: 40px 30px;
+    padding: 36px 24px;
   }
 
   .login-box h2 {
-    font-size: 28px;
-    margin-bottom: 30px;
+    font-size: 24px;
+    margin-bottom: 28px;
   }
 
   .theme-toggle {
-    width: 45px;
-    height: 45px;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
   }
 }
-
-/* Animation d'entrée */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.login-box {
-  animation: fadeInUp 0.6s ease;
-}
-
-/* Ensure vertical scroll and consistent theme for login page */
-.login-container, .page, .page-container {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.login-container.dark, .login-container.light, .page.dark, .page.light {
-  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
-  color: white;
-}
-.login-container::-webkit-scrollbar, .page::-webkit-scrollbar { width: 10px; }
-.login-container::-webkit-scrollbar-track, .page::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
-.login-container::-webkit-scrollbar-thumb, .page::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 10px; }
-.login-container { scrollbar-color: rgba(255,255,255,0.12) rgba(255,255,255,0.03); scrollbar-width: thin; }
