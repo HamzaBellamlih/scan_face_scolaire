@@ -758,7 +758,7 @@ header h1 {
 .face-page,
 .face-page * {
   scrollbar-width: thin !important;
-  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(15, 17, 26, 0.8);
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(15, 17, 26, 0.8) !important;
 }
 
 .face-page[data-theme="light"],
