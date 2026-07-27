@@ -1,57 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap');
+/* ==========================================================================
+   1. IMPORTS & VARIABLES CENTRALISÉES (SPÉCIFIQUE ÉTUDIANT)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  /* Typographie & Dimensions */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --transition-speed: 0.3s;
+  --radius-btn: 14px;
+  --radius-box: 24px;
 
-/* ── PAGE ── */
+  /* Thème Dark (Par défaut) */
+  --bg-gradient: linear-gradient(135deg, #1e2232, #3a3f55);
+  --text-primary: #ffffff;
+  --text-secondary: #8892a4;
+  --box-bg: rgba(30, 35, 50, 0.85);
+  --box-border: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(15, 21, 32, 0.6);
+  --input-border: rgba(255, 255, 255, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  
+  /* Couleurs d'accentuation Étudiant (Teinte Émeraude) */
+  --accent-primary: #10b981;
+  --accent-secondary: #059669;
+  --particle-color: #ffffff;
+  --particle-opacity: 0.4;
+}
+
+/* Thème Light */
+.letud-page.light {
+  --bg-gradient: linear-gradient(135deg, #e1e1e1, #e0e7ff);
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --box-bg: rgba(255, 255, 255, 0.9);
+  --box-border: rgba(16, 185, 129, 0.2);
+  --input-bg: #ffffff;
+  --input-border: rgba(16, 185, 129, 0.3);
+  --shadow-color: rgba(16, 185, 129, 0.15);
+  
+  --particle-color: #000000;
+  --particle-opacity: 0.2;
+}
+
+/* ==========================================================================
+   2. RESET & PAGE
+   ========================================================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .letud-page {
-  font-family: 'Barlow', sans-serif;
+  font-family: var(--font-main);
   min-height: 100vh;
-  background: #0d1117;
+  background: var(--bg-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow-y: auto;
   padding: 40px 20px;
+  transition: background var(--transition-speed) ease;
   scrollbar-width: thin;
-  scrollbar-color: rgba(16,185,129,0.4) transparent;
+  scrollbar-color: rgba(16, 185, 129, 0.4) transparent;
 }
 
-.letud-page::-webkit-scrollbar       { width: 6px; }
+.letud-page::-webkit-scrollbar { width: 6px; }
 .letud-page::-webkit-scrollbar-track { background: transparent; }
-.letud-page::-webkit-scrollbar-thumb { background: rgba(16,185,129,0.4); border-radius: 10px; }
-.letud-page::-webkit-scrollbar-thumb:hover { background: rgba(16,185,129,0.7); }
+.letud-page::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.4); border-radius: 10px; }
+.letud-page::-webkit-scrollbar-thumb:hover { background: rgba(16, 185, 129, 0.7); }
 
-/* ── ORBES ── */
-.letud-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-
-.letud-orb {
+/* Effet de particules */
+.letud-page::before {
+  content: '';
   position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.18;
-  animation: letudOrbFloat 12s ease-in-out infinite;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 5% 10%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 12% 25%, var(--particle-color), transparent),
+    radial-gradient(2px 2px at 25% 15%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 42% 8%, var(--particle-color), transparent),
+    radial-gradient(2px 2px at 65% 48%, var(--particle-color), transparent),
+    radial-gradient(1px 1px at 88% 20%, var(--particle-color), transparent);
+  background-size: 100% 200%;
+  opacity: var(--particle-opacity);
+  animation: particleFloatUp 15s linear infinite;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.letud-orb--1  { width: 500px; height: 500px; background: #10b981; top: -15%; left: -10%; animation-delay: 0s; }
-.letud-orb--2  { width: 350px; height: 350px; background: #059669; top: 20%;  right: -8%; animation-delay: 2s; }
-.letud-orb--3  { width: 280px; height: 280px; background: #34d399; bottom: 5%; left: 15%; animation-delay: 4s; }
-.letud-orb--4  { width: 200px; height: 200px; background: #06b6d4; top: 55%;  right: 20%; animation-delay: 1s; }
-.letud-orb--5  { width: 150px; height: 150px; background: #10b981; top: 10%;  left: 40%; animation-delay: 3s; }
-.letud-orb--6  { width: 120px; height: 120px; background: #047857; bottom: 20%; right: 5%; animation-delay: 5s; }
-.letud-orb--7  { width: 90px;  height: 90px;  background: #34d399; top: 70%;  left: 5%;  animation-delay: 6s; }
-.letud-orb--8  { width: 80px;  height: 80px;  background: #059669; top: 40%;  left: 60%; animation-delay: 7s; }
-.letud-orb--9  { width: 60px;  height: 60px;  background: #06b6d4; bottom: 35%; left: 30%; animation-delay: 2.5s; }
-.letud-orb--10 { width: 50px;  height: 50px;  background: #10b981; top: 85%;  right: 40%; animation-delay: 4.5s; }
-.letud-orb--11 { width: 40px;  height: 40px;  background: #047857; top: 25%;  right: 50%; animation-delay: 8s; }
-.letud-orb--12 { width: 30px;  height: 30px;  background: #34d399; bottom: 10%; right: 25%; animation-delay: 9s; }
-
-@keyframes letudOrbFloat {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50%       { transform: translateY(-30px) scale(1.05); }
+@keyframes particleFloatUp {
+  0% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
-/* ── CONTAINER — large pour layout horizontal ── */
+/* ==========================================================================
+   3. CONTENEUR, BRAND & CARD
+   ========================================================================== */
 .letud-container {
   position: relative;
   z-index: 1;
@@ -63,7 +109,6 @@
   gap: 28px;
 }
 
-/* ── BRAND ── */
 .letud-brand {
   text-align: center;
   animation: letudFadeUp 0.6s ease-out both;
@@ -73,50 +118,49 @@
   font-size: 56px;
   display: block;
   margin-bottom: 14px;
-  filter: drop-shadow(0 0 20px rgba(16,185,129,0.6));
+  filter: drop-shadow(0 0 20px var(--accent-primary));
 }
 
 .letud-brand-title {
   font-size: 30px;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text-primary);
   letter-spacing: -0.5px;
   margin-bottom: 8px;
 }
 
-.letud-brand-sub { font-size: 14px; color: #8892a4; }
+.letud-brand-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
 
-/* ── CARD ── */
 .letud-card {
   width: 100%;
-  background: rgba(22, 27, 39, 0.85);
+  background: var(--box-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(16,185,129,0.2);
-  border-radius: 24px;
+  border: 1px solid var(--box-border);
+  border-radius: var(--radius-box);
   padding: 36px 40px;
-  box-shadow:
-    0 0 0 1px rgba(16,185,129,0.1),
-    0 32px 64px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+  box-shadow: 0 25px 50px var(--shadow-color);
   animation: letudFadeUp 0.6s ease-out 0.1s both;
 }
 
-/* ── FORM HORIZONTAL ── */
+/* ==========================================================================
+   4. FORMULAIRE & CHAMPS (4 COLONNES)
+   ========================================================================== */
 .letud-form {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* Ligne des champs côte à côte — 4 colonnes pour étudiant */
 .letud-fields-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-/* ── FIELD ── */
 .letud-field {
   display: flex;
   flex-direction: column;
@@ -128,7 +172,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #8892a4;
+  color: var(--text-secondary);
 }
 
 .letud-input-wrap {
@@ -149,22 +193,22 @@
   width: 100%;
   height: 50px;
   padding: 0 16px 0 46px;
-  background: #0f1520;
-  border: 1.5px solid #1e2d45;
-  border-radius: 14px;
-  color: #e2e8f0;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-btn);
+  color: var(--text-primary);
   font-size: 15px;
-  font-family: 'Barlow', sans-serif;
+  font-family: var(--font-main);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
   appearance: none;
 }
 
-.letud-input::placeholder { color: #4a5568; }
+.letud-input::placeholder { color: var(--text-secondary); opacity: 0.7; }
 
 .letud-input:focus {
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
 .letud-select {
@@ -175,12 +219,15 @@
   padding-right: 40px;
 }
 
-.letud-select option { background: #161b27; color: #e2e8f0; }
+.letud-select option {
+  background: var(--box-bg);
+  color: var(--text-primary);
+}
 
-/* ── ERROR ── */
+/* Error & Buttons */
 .letud-error {
-  background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.3);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
   border-radius: 12px;
   padding: 12px 16px;
   font-size: 13px;
@@ -190,38 +237,36 @@
   gap: 8px;
 }
 
-/* ── BUTTON ── */
 .letud-btn {
   width: 100%;
   height: 52px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
   border: none;
-  border-radius: 14px;
+  border-radius: var(--radius-btn);
   color: #ffffff;
   font-size: 15px;
   font-weight: 700;
-  font-family: 'Barlow', sans-serif;
+  font-family: var(--font-main);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px rgba(16,185,129,0.4);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
 }
 
 .letud-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(16,185,129,0.5);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5);
 }
 
 .letud-btn:active:not(:disabled) { transform: translateY(0); }
 .letud-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-/* ── SPINNER ── */
 .letud-spinner {
   width: 22px;
   height: 22px;
-  border: 2.5px solid rgba(255,255,255,0.3);
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
   border-top-color: #ffffff;
   border-radius: 50%;
   animation: letudSpin 0.75s linear infinite;
@@ -230,36 +275,37 @@
 
 @keyframes letudSpin { to { transform: rotate(360deg); } }
 
-/* ── BACK ── */
 .letud-back {
   background: transparent;
   border: none;
-  color: #8892a4;
+  color: var(--text-secondary);
   font-size: 13px;
   font-weight: 600;
-  font-family: 'Barlow', sans-serif;
+  font-family: var(--font-main);
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color var(--transition-speed);
   animation: letudFadeUp 0.6s ease-out 0.2s both;
 }
 
-.letud-back:hover { color: #e2e8f0; }
+.letud-back:hover { color: var(--text-primary); }
 
 @keyframes letudFadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── RESPONSIVE ── */
+/* ==========================================================================
+   5. RESPONSIVE
+   ========================================================================== */
 @media (max-width: 800px) {
-  .letud-fields-row  { grid-template-columns: 1fr 1fr; }
-  .letud-container   { max-width: 600px; }
+  .letud-fields-row { grid-template-columns: repeat(2, 1fr); }
+  .letud-container { max-width: 600px; }
 }
 
 @media (max-width: 500px) {
-  .letud-fields-row  { grid-template-columns: 1fr; }
-  .letud-container   { max-width: 440px; }
-  .letud-card        { padding: 28px 20px; border-radius: 18px; }
+  .letud-fields-row { grid-template-columns: 1fr; }
+  .letud-container { max-width: 440px; }
+  .letud-card { padding: 28px 20px; border-radius: 18px; }
   .letud-brand-title { font-size: 24px; }
-  .letud-brand-icon  { font-size: 44px; }
+  .letud-brand-icon { font-size: 44px; }
 }
