@@ -486,88 +486,197 @@ header h1 {
 }
 
 /* ==========================================
-   8. CAMÉRA & OVERLAYS
+   STYLE DU COMPOSANT CAMERA CARD
    ========================================== */
+
+/* Carte conteneur */
+.camera-card {
+  background: rgba(22, 27, 38, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.face-page[data-theme="light"] .camera-card {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* En-tête */
+.camera-card-header {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.face-page[data-theme="light"] .camera-card-header {
+  color: #1f2937;
+}
+
+/* Frame de la vidéo & Placeholder */
 .camera-frame {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
-  background: #000;
-  border-radius: 16px;
+  background: #0b0f19;
+  border-radius: 8px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
 }
 
-.camera-frame video {
+.camera-frame video,
+.camera-frame canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: none;
 }
 
-.camera-frame video.cam-active { display: block; }
-
-.camera-frame canvas {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-}
-
+/* Caméra inactive */
 .cam-placeholder {
-  text-align: center;
-  color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 14px;
 }
 
 .cam-placeholder .icon {
-  font-size: 48px;
-  margin-bottom: 8px;
+  font-size: 32px;
+  opacity: 0.6;
 }
 
-/* Bords Cyberpunk */
+/* Repères dans les coins (Corners HUD) */
 .corner {
   position: absolute;
   width: 20px;
   height: 20px;
-  border-color: #3441d3;
-  border-style: solid;
+  border: 2px solid #3b82f6;
   pointer-events: none;
+  z-index: 2;
 }
-.corner-tl { top: 12px; left: 12px; border-width: 3px 0 0 3px; }
-.corner-tr { top: 12px; right: 12px; border-width: 3px 3px 0 0; }
-.corner-bl { bottom: 12px; left: 12px; border-width: 0 0 3px 3px; }
-.corner-br { bottom: 12px; right: 12px; border-width: 0 3px 3px 0; }
 
-/* Overlays Caméra */
+.corner-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.corner-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+.corner-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+.corner-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+/* Overlays de statut (LIVE, SCANNING, RESULTATS) */
 .overlay-status {
   position: absolute;
-  top: 12px; left: 12px;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   background: rgba(239, 68, 68, 0.85);
-  color: white;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 800;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.5px;
+  z-index: 3;
+  backdrop-filter: blur(4px);
 }
 
-.overlay-status.scanning { background: rgba(245, 158, 11, 0.85); }
+.overlay-status.scanning {
+  background: rgba(245, 158, 11, 0.85);
+  animation: pulse 1.5s infinite;
+}
 
 .overlay-name {
   position: absolute;
-  bottom: 12px; left: 12px; right: 12px;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: 700;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 14px;
   text-align: center;
-  backdrop-filter: blur(8px);
+  z-index: 3;
+  backdrop-filter: blur(6px);
 }
 
-.overlay-ok { background: rgba(16, 185, 129, 0.85); color: white; }
-.overlay-fail { background: rgba(239, 68, 68, 0.85); color: white; }
+.overlay-ok {
+  background: rgba(16, 185, 129, 0.85);
+  color: #ffffff;
+}
+
+.overlay-fail {
+  background: rgba(239, 68, 68, 0.85);
+  color: #ffffff;
+}
+
+/* Groupe de boutons d'action */
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-action:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.btn-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-action.btn-live {
+  background: #7c3aed;
+}
+
+.btn-action.btn-live:hover:not(:disabled) {
+  background: #6d28d9;
+}
+
+.btn-action.btn-danger {
+  background: #dc2626;
+  flex: 0 0 auto;
+}
+
+.btn-action.btn-danger:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+/* Animation clignotante pour le mode analyse */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
 
 /* Boutons d'action */
 .button-group {
