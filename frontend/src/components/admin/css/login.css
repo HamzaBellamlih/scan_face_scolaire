@@ -4,6 +4,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    width: auto;
 }
 
 :root{
@@ -11,8 +12,6 @@
     --radius:24px;
     --radius-btn:50px;
     --font:'Plus Jakarta Sans',sans-serif;
-    width:1200px;
-    height:100%;
 }
 
 /* ==============================
