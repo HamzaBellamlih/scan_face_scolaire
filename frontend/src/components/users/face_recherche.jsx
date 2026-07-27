@@ -438,6 +438,7 @@ export default function FaceRecognitionPage() {
           </div>
           <button className="theme-btn" onClick={() => setIsDarkMode(!isDarkMode)}>
             {isDarkMode ? "☀️ Mode Clair" : "🌙 Mode Sombre"}
+            style={{ maxHeight: "100vh", overflowY: "auto" }}
           </button>
         </div>
       </header>
