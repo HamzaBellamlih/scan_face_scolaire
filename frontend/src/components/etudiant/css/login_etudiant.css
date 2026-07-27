@@ -1,122 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap');
+/* Import de la police Plus Jakarta Sans */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* ── PAGE ── */
-.letud-page {
-  font-family: 'Barlow', sans-serif;
-  min-height: 100vh;
-  background: #0d1117;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow-y: auto;
-  padding: 40px 20px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(16,185,129,0.4) transparent;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.letud-page::-webkit-scrollbar       { width: 6px; }
-.letud-page::-webkit-scrollbar-track { background: transparent; }
-.letud-page::-webkit-scrollbar-thumb { background: rgba(16,185,129,0.4); border-radius: 10px; }
-.letud-page::-webkit-scrollbar-thumb:hover { background: rgba(16,185,129,0.7); }
+/* Page */
+.letud-page {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #1e2232, #3a3f55);
+}
 
-/* ── ORBES ── */
-.letud-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+/* Fond avec particules (reprend l'effet du choix-container) */
+.letud-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(2px 2px at 5% 10%, white, transparent),
+    radial-gradient(1px 1px at 12% 25%, white, transparent),
+    radial-gradient(2px 2px at 8% 45%, white, transparent),
+    radial-gradient(1px 1px at 15% 60%, white, transparent),
+    radial-gradient(2px 2px at 10% 78%, white, transparent),
+    radial-gradient(1px 1px at 18% 88%, white, transparent),
+    radial-gradient(2px 2px at 25% 15%, white, transparent),
+    radial-gradient(1px 1px at 28% 35%, white, transparent),
+    radial-gradient(2px 2px at 22% 52%, white, transparent),
+    radial-gradient(1px 1px at 30% 68%, white, transparent),
+    radial-gradient(2px 2px at 42% 8%, white, transparent),
+    radial-gradient(1px 1px at 48% 22%, white, transparent),
+    radial-gradient(2px 2px at 58% 12%, white, transparent),
+    radial-gradient(1px 1px at 62% 28%, white, transparent),
+    radial-gradient(2px 2px at 72% 18%, white, transparent),
+    radial-gradient(1px 1px at 78% 32%, white, transparent),
+    radial-gradient(2px 2px at 88% 20%, white, transparent),
+    radial-gradient(1px 1px at 92% 38%, white, transparent);
+  background-size: 100% 200%;
+  background-position: 0% 100%;
+  opacity: 0.4;
+  animation: letudParticleFloat 15s linear infinite;
+  z-index: 0;
+}
+
+@keyframes letudParticleFloat {
+  0% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Orbes flottants générés dynamiquement (12) */
+.letud-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
 
 .letud-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.18;
+  filter: blur(50px);
+  opacity: 0.35;
   animation: letudOrbFloat 12s ease-in-out infinite;
 }
 
-.letud-orb--1  { width: 500px; height: 500px; background: #10b981; top: -15%; left: -10%; animation-delay: 0s; }
-.letud-orb--2  { width: 350px; height: 350px; background: #059669; top: 20%;  right: -8%; animation-delay: 2s; }
-.letud-orb--3  { width: 280px; height: 280px; background: #34d399; bottom: 5%; left: 15%; animation-delay: 4s; }
-.letud-orb--4  { width: 200px; height: 200px; background: #06b6d4; top: 55%;  right: 20%; animation-delay: 1s; }
-.letud-orb--5  { width: 150px; height: 150px; background: #10b981; top: 10%;  left: 40%; animation-delay: 3s; }
-.letud-orb--6  { width: 120px; height: 120px; background: #047857; bottom: 20%; right: 5%; animation-delay: 5s; }
-.letud-orb--7  { width: 90px;  height: 90px;  background: #34d399; top: 70%;  left: 5%;  animation-delay: 6s; }
-.letud-orb--8  { width: 80px;  height: 80px;  background: #059669; top: 40%;  left: 60%; animation-delay: 7s; }
-.letud-orb--9  { width: 60px;  height: 60px;  background: #06b6d4; bottom: 35%; left: 30%; animation-delay: 2.5s; }
-.letud-orb--10 { width: 50px;  height: 50px;  background: #10b981; top: 85%;  right: 40%; animation-delay: 4.5s; }
-.letud-orb--11 { width: 40px;  height: 40px;  background: #047857; top: 25%;  right: 50%; animation-delay: 8s; }
-.letud-orb--12 { width: 30px;  height: 30px;  background: #34d399; bottom: 10%; right: 25%; animation-delay: 9s; }
+.letud-orb--1  { width: 180px; height: 180px; top: 5%;  left: 8%;  background: #818cf8; animation-delay: 0s; }
+.letud-orb--2  { width: 120px; height: 120px; top: 15%; left: 70%; background: #6366f1; animation-delay: 1s; }
+.letud-orb--3  { width: 220px; height: 220px; top: 60%; left: 5%;  background: #4f46e5; animation-delay: 2s; }
+.letud-orb--4  { width: 140px; height: 140px; top: 75%; left: 80%; background: #818cf8; animation-delay: 3s; }
+.letud-orb--5  { width: 100px; height: 100px; top: 35%; left: 45%; background: #6366f1; animation-delay: 4s; }
+.letud-orb--6  { width: 160px; height: 160px; top: 85%; left: 40%; background: #4f46e5; animation-delay: 5s; }
+.letud-orb--7  { width: 90px;  height: 90px;  top: 10%; left: 40%; background: #818cf8; animation-delay: 6s; }
+.letud-orb--8  { width: 130px; height: 130px; top: 50%; left: 85%; background: #6366f1; animation-delay: 7s; }
+.letud-orb--9  { width: 170px; height: 170px; top: 25%; left: 20%; background: #4f46e5; animation-delay: 8s; }
+.letud-orb--10 { width: 110px; height: 110px; top: 65%; left: 60%; background: #818cf8; animation-delay: 9s; }
+.letud-orb--11 { width: 150px; height: 150px; top: 90%; left: 15%; background: #6366f1; animation-delay: 10s; }
+.letud-orb--12 { width: 95px;  height: 95px;  top: 45%; left: 10%; background: #4f46e5; animation-delay: 11s; }
 
 @keyframes letudOrbFloat {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50%       { transform: translateY(-30px) scale(1.05); }
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -30px) scale(1.1); }
 }
 
-/* ── CONTAINER — large pour layout horizontal ── */
+/* Container général */
 .letud-container {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 940px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  width: 100%;
+  max-width: 720px;
+  animation: letudFadeIn 0.6s ease-out;
 }
 
-/* ── BRAND ── */
+@keyframes letudFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bloc identité */
 .letud-brand {
   text-align: center;
-  animation: letudFadeUp 0.6s ease-out both;
+  margin-bottom: 32px;
 }
 
 .letud-brand-icon {
-  font-size: 56px;
-  display: block;
-  margin-bottom: 14px;
-  filter: drop-shadow(0 0 20px rgba(16,185,129,0.6));
+  font-size: 48px;
+  margin-bottom: 12px;
 }
 
 .letud-brand-title {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.5px;
   margin-bottom: 8px;
 }
 
-.letud-brand-sub { font-size: 14px; color: #8892a4; }
-
-/* ── CARD ── */
-.letud-card {
-  width: 100%;
-  background: rgba(22, 27, 39, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(16,185,129,0.2);
-  border-radius: 24px;
-  padding: 36px 40px;
-  box-shadow:
-    0 0 0 1px rgba(16,185,129,0.1),
-    0 32px 64px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.05);
-  animation: letudFadeUp 0.6s ease-out 0.1s both;
+.letud-brand-sub {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* ── FORM HORIZONTAL ── */
+/* Carte glassmorphism */
+.letud-card {
+  width: 100%;
+  background: rgba(30, 35, 50, 0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .letud-form {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* Ligne des champs côte à côte — 4 colonnes pour étudiant */
+/* Rangée des 4 champs */
 .letud-fields-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
-/* ── FIELD ── */
 .letud-field {
   display: flex;
   flex-direction: column;
@@ -124,11 +166,10 @@
 }
 
 .letud-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #8892a4;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: -0.2px;
 }
 
 .letud-input-wrap {
@@ -139,127 +180,141 @@
 
 .letud-input-icon {
   position: absolute;
-  left: 16px;
-  font-size: 16px;
+  left: 12px;
+  font-size: 15px;
   pointer-events: none;
-  z-index: 1;
+  opacity: 0.7;
 }
 
 .letud-input {
   width: 100%;
-  height: 50px;
-  padding: 0 16px 0 46px;
-  background: #0f1520;
-  border: 1.5px solid #1e2d45;
-  border-radius: 14px;
-  color: #e2e8f0;
-  font-size: 15px;
-  font-family: 'Barlow', sans-serif;
+  padding: 14px 12px 14px 36px;
+  font-size: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  appearance: none;
+  transition: all 0.3s ease;
 }
 
-.letud-input::placeholder { color: #4a5568; }
+.letud-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
 
 .letud-input:focus {
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
 }
 
 .letud-select {
+  appearance: none;
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238892a4' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  padding-right: 40px;
 }
 
-.letud-select option { background: #161b27; color: #e2e8f0; }
+.letud-select option {
+  background: #1e2232;
+  color: #ffffff;
+}
 
-/* ── ERROR ── */
+/* Message d'erreur */
 .letud-error {
-  background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.3);
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 13px;
-  color: #f87171;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 12px;
+  padding: 12px 16px;
 }
 
-/* ── BUTTON ── */
+/* Bouton de connexion */
 .letud-btn {
-  width: 100%;
-  height: 52px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  border: none;
-  border-radius: 14px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   color: #ffffff;
-  font-size: 15px;
-  font-weight: 700;
-  font-family: 'Barlow', sans-serif;
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  letter-spacing: -0.2px;
+  box-shadow: 0 12px 24px rgba(52, 65, 211, 0.35);
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px rgba(16,185,129,0.4);
+  min-height: 52px;
 }
 
-.letud-btn:hover:not(:disabled) {
+.letud-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(16,185,129,0.5);
+  box-shadow: 0 16px 32px rgba(52, 65, 211, 0.5);
 }
 
-.letud-btn:active:not(:disabled) { transform: translateY(0); }
-.letud-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+.letud-btn:active {
+  transform: translateY(0);
+}
 
-/* ── SPINNER ── */
+.letud-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spinner de chargement */
 .letud-spinner {
-  width: 22px;
-  height: 22px;
-  border: 2.5px solid rgba(255,255,255,0.3);
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
   border-top-color: #ffffff;
   border-radius: 50%;
-  animation: letudSpin 0.75s linear infinite;
-  display: inline-block;
+  animation: letudSpin 0.7s linear infinite;
 }
 
-@keyframes letudSpin { to { transform: rotate(360deg); } }
+@keyframes letudSpin {
+  to { transform: rotate(360deg); }
+}
 
-/* ── BACK ── */
+/* Bouton retour */
 .letud-back {
-  background: transparent;
+  margin-top: 24px;
+  background: none;
   border: none;
-  color: #8892a4;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: 'Barlow', sans-serif;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: color 0.2s;
-  animation: letudFadeUp 0.6s ease-out 0.2s both;
+  transition: color 0.3s ease;
 }
 
-.letud-back:hover { color: #e2e8f0; }
-
-@keyframes letudFadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+.letud-back:hover {
+  color: #818cf8;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 800px) {
-  .letud-fields-row  { grid-template-columns: 1fr 1fr; }
-  .letud-container   { max-width: 600px; }
+/* Responsive */
+@media (max-width: 768px) {
+  .letud-fields-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 500px) {
-  .letud-fields-row  { grid-template-columns: 1fr; }
-  .letud-container   { max-width: 440px; }
-  .letud-card        { padding: 28px 20px; border-radius: 18px; }
-  .letud-brand-title { font-size: 24px; }
-  .letud-brand-icon  { font-size: 44px; }
+@media (max-width: 480px) {
+  .letud-fields-row {
+    grid-template-columns: 1fr;
+  }
+
+  .letud-card {
+    padding: 28px 20px;
+  }
+
+  .letud-brand-title {
+    font-size: 26px;
+  }
 }
