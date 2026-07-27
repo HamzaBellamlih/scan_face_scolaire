@@ -51,7 +51,6 @@
 
 .login-container{
     min-height:100vh;
-    max-width:1200px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -96,7 +95,7 @@
     position:relative;
     z-index:2;
     width:100%;
-    max-width:430px;
+    max-width:1200px;
     padding:45px;
     border-radius:var(--radius);
     background:var(--card);
