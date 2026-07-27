@@ -918,3 +918,262 @@ header h1 {
 .search-page.light ::-webkit-scrollbar-thumb:hover {
   background: #3441d3;
 }
+
+/* ==========================================
+   1. REGLES DE SCROLLBARS GLOBALES & PAR COMPOSANTS
+   ========================================== */
+
+/* --- Scrollbar globale pour la page et tous ses éléments --- */
+.face-page,
+.face-page * {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+/* Chrome, Safari, Edge (Navigateurs WebKit) */
+.face-page ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px; /* Scrollbar horizontale */
+}
+
+.face-page ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.face-page ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.face-page ::-webkit-scrollbar-thumb:hover {
+  background: #3441d3; /* Accentuation Indigo au survol */
+}
+
+/* --- Scrollbar dédiée pour le corps du panneau de résultats (.results-card-body) --- */
+.results-card-body {
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 6px; /* Espace pour éviter que la scrollbar ne chevauche le contenu */
+}
+
+/* --- Scrollbar dédiée pour la barre de filtres (.filter-bar) --- */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  background: rgba(30, 35, 50, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow-x: auto; /* Active le défilement horizontal */
+}
+
+/* ==========================================
+   2. STYLES GÉNÉRAUX DE LA PAGE (CONTAINER)
+   ========================================== */
+.face-page {
+  min-height: 100vh;
+  padding: 24px;
+  background-color: #0b0f19;
+  color: #f3f4f6;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-box {
+  font-size: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.subtitle {
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stats-breakdown {
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.api-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dot.ok { background-color: #10b981; box-shadow: 0 0 8px #10b981; }
+.dot.loading { background-color: #f59e0b; }
+.dot.offline { background-color: #ef4444; }
+
+.theme-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: inherit;
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ==========================================
+   3. GRILLE ET CARTE CAMÉRA / RÉSULTATS
+   ========================================== */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.camera-card, .results-card {
+  background: rgba(30, 35, 50, 0.5);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.camera-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Boutons & Contrôles */
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: inherit;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.filter-active {
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(52, 65, 211, 0.4);
+}
+
+.btn-back {
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: inherit;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  width: fit-content;
+}
+
+/* ==========================================
+   4. ADAPTATION EN MODE LIGHT (THEME LIGHT)
+   ========================================== */
+.face-page[data-theme="light"] {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+/* Adaptation Scrollbars Mode Clair */
+.face-page[data-theme="light"] * {
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+}
+
+.face-page[data-theme="light"] ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.face-page[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.face-page[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #3441d3;
+}
+
+.face-page[data-theme="light"] .camera-card,
+.face-page[data-theme="light"] .results-card,
+.face-page[data-theme="light"] .filter-bar {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.face-page[data-theme="light"] .filter-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+}
