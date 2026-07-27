@@ -860,7 +860,61 @@ header h1 {
   color: #374151;
 }
 
-.face-page[data-theme="light"] .btn-retry:hover,
-.search-page.light .btn-retry:hover {
+.train-banner,
+.results-card-body,
+.filter-bar {
+  /* Scrollbar fine pour Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+/* Chrome, Safari, Edge */
+.train-banner::-webkit-scrollbar,
+.results-card-body::-webkit-scrollbar,
+.filter-bar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px; /* Pour le scroll horizontal */
+}
+
+.train-banner::-webkit-scrollbar-track,
+.results-card-body::-webkit-scrollbar-track,
+.filter-bar::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.train-banner::-webkit-scrollbar-thumb,
+.results-card-body::-webkit-scrollbar-thumb,
+.filter-bar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.train-banner::-webkit-scrollbar-thumb:hover,
+.results-card-body::-webkit-scrollbar-thumb:hover,
+.filter-bar::-webkit-scrollbar-thumb:hover {
+  background: #3441d3; /* Couleur d'accentuation au survol */
+}
+
+/* ==========================================
+   ADAPTATION POUR LE MODE LIGHT
+   ========================================== */
+.face-page[data-theme="light"] .train-banner,
+.face-page[data-theme="light"] .results-card-body,
+.face-page[data-theme="light"] .filter-bar,
+.search-page.light .train-banner,
+.search-page.light .results-card-body,
+.search-page.light .filter-bar {
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.face-page[data-theme="light"] ::-webkit-scrollbar-thumb,
+.search-page.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.face-page[data-theme="light"] ::-webkit-scrollbar-thumb:hover,
+.search-page.light ::-webkit-scrollbar-thumb:hover {
+  background: #3441d3;
 }
