@@ -1,5 +1,5 @@
 /* ==========================================
-   IMPORTATION & CONFIGURATION DE BASE
+   1. IMPORTATION & CONFIGURATION DE BASE
    ========================================== */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -9,21 +9,26 @@
   box-sizing: border-box;
 }
 
-/* ==========================================
-   PERSONNALISATION DE LA BARRE DE SCROLL (GLOBAL)
-   ========================================== */
-/* Largeur et hauteur de la barre */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+body, html {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  background-color: #0f111a;
+  color: #f3f4f6;
 }
 
-/* Fond de la barre (Track) */
+/* ==========================================
+   2. PERSONNALISATION DES BARRES DE SCROLL
+   ========================================== */
+/* Chrome, Safari, Edge (Global) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
 ::-webkit-scrollbar-track {
   background: rgba(15, 17, 26, 0.8);
 }
 
-/* Curseur (Thumb) par défaut - Mode Dark */
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 8px;
@@ -35,7 +40,7 @@
   background: #3441d3;
 }
 
-/* Ajustement de la Scrollbar pour le Mode Clair */
+/* Scrollbar - Mode Clair */
 .face-page[data-theme="light"]::-webkit-scrollbar-track,
 html:has(.face-page[data-theme="light"])::-webkit-scrollbar-track {
   background: #e1e1e1;
@@ -52,7 +57,7 @@ html:has(.face-page[data-theme="light"])::-webkit-scrollbar-thumb:hover {
   background: #3441d3;
 }
 
-/* Support pour Firefox */
+/* Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) rgba(15, 17, 26, 0.8);
@@ -62,15 +67,8 @@ html:has(.face-page[data-theme="light"])::-webkit-scrollbar-thumb:hover {
   scrollbar-color: rgba(0, 0, 0, 0.25) #e1e1e1;
 }
 
-body, html {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  min-height: 100vh;
-  background-color: #0f111a;
-  color: #f3f4f6;
-}
-
 /* ==========================================
-   CONTAINER PRINCIPAL & THEMES
+   3. CONTAINER PRINCIPAL & THÈMES
    ========================================== */
 .face-page {
   min-height: 100vh;
@@ -79,10 +77,10 @@ body, html {
   z-index: 1;
   transition: background 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
-  overflow-y: auto; /* Active le scroll vertical si nécessaire */
+  overflow-y: auto;
 }
 
-/* Mode Sombre (Dark) */
+/* Mode Dark */
 .face-page[data-theme="dark"] {
   background: linear-gradient(135deg, #1e2232, #3a3f55);
   color: #ffffff;
@@ -107,7 +105,7 @@ body, html {
   z-index: 0;
 }
 
-/* Mode Clair (Light) */
+/* Mode Light */
 .face-page[data-theme="light"] {
   background: linear-gradient(135deg, #e1e1e1, #e0e7ff);
   color: #1f2937;
@@ -136,7 +134,7 @@ body, html {
 }
 
 /* ==========================================
-   HEADER / EN-TÊTE
+   4. HEADER / EN-TÊTE
    ========================================== */
 header {
   display: flex;
@@ -180,9 +178,10 @@ header h1 {
   gap: 16px;
 }
 
-/* Badge breakdown & API */
-.stats-breakdown {
+/* Badges Header */
+.stats-breakdown, .api-badge {
   display: flex;
+  align-items: center;
   gap: 12px;
   background: rgba(30, 35, 50, 0.5);
   padding: 8px 16px;
@@ -193,24 +192,7 @@ header h1 {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.face-page[data-theme="light"] .stats-breakdown {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(0, 0, 0, 0.08);
-}
-
-.api-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 30px;
-  background: rgba(30, 35, 50, 0.5);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
+.face-page[data-theme="light"] .stats-breakdown,
 .face-page[data-theme="light"] .api-badge {
   background: rgba(255, 255, 255, 0.6);
   border-color: rgba(0, 0, 0, 0.08);
@@ -244,7 +226,7 @@ header h1 {
 }
 
 /* ==========================================
-   LAYOUT GENERAL & FILTRES
+   5. LAYOUT GÉNÉRAL & FILTRES
    ========================================== */
 .face-layout {
   position: relative;
@@ -253,54 +235,222 @@ header h1 {
   margin: 0 auto;
 }
 
-.train-section {
-  margin-bottom: 20px;
-}
-
 .filter-bar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  overflow-x: auto; /* Permet un scroll horizontal si trop de filtres sur petit écran */
-  padding-bottom: 4px;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  background: rgba(30, 35, 50, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow-x: auto;
 }
 
 .filter-label {
   font-size: 14px;
-  font-weight: 600;
-  opacity: 0.8;
+  font-weight: 700;
+  opacity: 0.85;
   white-space: nowrap;
+  margin-right: 4px;
 }
 
 .filter-btn {
-  background: rgba(30, 35, 50, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: inherit;
   padding: 8px 16px;
   border-radius: 12px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: all 0.2s ease;
   white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.filter-btn.filter-active {
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(52, 65, 211, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Thème Clair Filtres */
+.face-page[data-theme="light"] .filter-bar {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(99, 102, 241, 0.15);
 }
 
 .face-page[data-theme="light"] .filter-btn {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(99, 102, 241, 0.2);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #374151;
 }
 
-.filter-btn:hover, .filter-btn.filter-active {
-  background: #3441d3;
-  color: white;
+.face-page[data-theme="light"] .filter-btn:hover {
+  background: #ffffff;
   border-color: #3441d3;
-  box-shadow: 0 4px 12px rgba(52, 65, 211, 0.3);
+  color: #3441d3;
+}
+
+.face-page[data-theme="light"] .filter-btn.filter-active {
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  color: #ffffff;
 }
 
 /* ==========================================
-   GRILLE PRINCIPALE (CARDS GLASSMORPHISM)
+   6. SECTION ENTRAÎNEMENT (.train-section)
+   ========================================== */
+.train-section {
+  width: 100%;
+  margin-bottom: 20px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.train-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: rgba(30, 35, 50, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.train-banner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.train-banner-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Badges Statut */
+.train-status-badge, .train-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+}
+
+.train-status-badge.idle, .train-status.idle {
+  background: rgba(107, 114, 128, 0.15);
+  color: #9ca3af;
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+.train-status-badge.training, .train-status.training {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  animation: pulseStatus 1.5s infinite ease-in-out;
+}
+
+.train-status-badge.success, .train-status.success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+.train-status-badge.error, .train-status.error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.train-message {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.train-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.train-progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 10px rgba(52, 65, 211, 0.5);
+}
+
+.train-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  opacity: 0.75;
+  font-weight: 500;
+}
+
+.btn-retry {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: inherit;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-retry:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Thème Clair Train Section */
+.face-page[data-theme="light"] .train-banner {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+}
+
+.face-page[data-theme="light"] .train-progress-bar {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.face-page[data-theme="light"] .btn-retry {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #374151;
+}
+
+/* ==========================================
+   7. GRILLE PRINCIPALE (CARDS)
    ========================================== */
 .main-grid {
   display: grid;
@@ -336,7 +486,7 @@ header h1 {
 }
 
 /* ==========================================
-   SECTION CAMÉRA & FLUX VIDÉO
+   8. CAMÉRA & OVERLAYS
    ========================================== */
 .camera-frame {
   position: relative;
@@ -358,9 +508,7 @@ header h1 {
   display: none;
 }
 
-.camera-frame video.cam-active {
-  display: block;
-}
+.camera-frame video.cam-active { display: block; }
 
 .camera-frame canvas {
   position: absolute;
@@ -379,7 +527,7 @@ header h1 {
   margin-bottom: 8px;
 }
 
-/* Bords Cyberpunk / Viseur */
+/* Bords Cyberpunk */
 .corner {
   position: absolute;
   width: 20px;
@@ -406,9 +554,7 @@ header h1 {
   letter-spacing: 0.5px;
 }
 
-.overlay-status.scanning {
-  background: rgba(245, 158, 11, 0.85);
-}
+.overlay-status.scanning { background: rgba(245, 158, 11, 0.85); }
 
 .overlay-name {
   position: absolute;
@@ -466,7 +612,7 @@ header h1 {
 .btn-danger:hover:not(:disabled) { background: #dc2626; }
 
 /* ==========================================
-   ONGLETS & RÉSULTATS
+   9. ONGLETS & RÉSULTATS
    ========================================== */
 .tab-buttons {
   display: flex;
@@ -511,11 +657,10 @@ header h1 {
 .results-card-body {
   min-height: 250px;
   max-height: 500px;
-  overflow-y: auto; /* Permet un défilement propre à l'intérieur de la carte résultat si le contenu déborde */
-  padding-right: 4px;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
-/* Éstats vides & chargement */
 .state-empty, .state-scanning {
   display: flex;
   flex-direction: column;
@@ -528,7 +673,6 @@ header h1 {
   gap: 8px;
 }
 
-/* Profil Identifié */
 .result-identified {
   display: flex;
   flex-direction: column;
@@ -556,7 +700,6 @@ header h1 {
   gap: 10px;
 }
 
-/* Echec Identification */
 .result-fail {
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.3);
@@ -567,7 +710,6 @@ header h1 {
   margin-top: 20px;
 }
 
-/* Bouton Retour */
 .btn-back {
   grid-column: 1 / -1;
   margin-top: 10px;
@@ -589,591 +731,21 @@ header h1 {
 }
 
 /* ==========================================
-   ANIMATIONS & RESPONSIVE
+   10. ANIMATIONS & RESPONSIVE
    ========================================== */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseStatus {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.98); }
 }
 
 @media (max-width: 900px) {
-  .main-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-  
-  .header-right {
-    width: 100%;
-    justify-content: space-between;
-  }
-}
-
-.filter-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  padding: 8px 12px;
-  background: rgba(30, 35, 50, 0.4);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  overflow-x: auto; /* Permet le défilement horizontal sur mobile */
-  scrollbar-width: none; /* Cache la scrollbar sur Firefox */
-}
-
-/* Cache la scrollbar sur Chrome/Safari */
-.filter-bar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Label "Filtrer :" */
-.filter-label {
-  font-size: 14px;
-  font-weight: 700;
-  opacity: 0.85;
-  white-space: nowrap;
-  margin-right: 4px;
-}
-
-/* Boutons de filtre de base */
-.filter-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: inherit;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.filter-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-/* État Actif du bouton */
-.filter-btn.filter-active {
-  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
-  color: #ffffff;
-  border-color: transparent;
-  box-shadow: 0 4px 14px rgba(52, 65, 211, 0.4);
-  transform: translateY(-1px);
-}
-
-/* ==========================================
-   ADAPTATION POUR LE MODE LIGHT
-   ========================================== */
-.face-page[data-theme="light"] .filter-bar,
-.search-page.light .filter-bar {
-  background: rgba(255, 255, 255, 0.5);
-  border-color: rgba(99, 102, 241, 0.15);
-}
-
-.face-page[data-theme="light"] .filter-btn,
-.search-page.light .filter-btn {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.1);
-  color: #374151;
-}
-
-.face-page[data-theme="light"] .filter-btn:hover,
-.search-page.light .filter-btn:hover {
-  background: #ffffff;
-  border-color: #3441d3;
-  color: #3441d3;
-}
-
-.face-page[data-theme="light"] .filter-btn.filter-active,
-.search-page.light .filter-btn.filter-active {
-  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
-  color: #ffffff;
-  border-color: transparent;
-}
-
-.train-section {
-  width: 100%;
-  margin-bottom: 20px;
-  animation: fadeIn 0.4s ease-out;
-}
-
-/* Container du Banner (TrainBanner) */
-.train-banner {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px 20px;
-  border-radius: 18px;
-  background: rgba(30, 35, 50, 0.6);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-/* Alignement principal (Status, Message & Bouton) */
-.train-banner-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.train-banner-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Badge Statut d'entraînement */
-.train-status-badge {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.train-status-badge.idle {
-  background: rgba(107, 114, 128, 0.2);
-  color: #9ca3af;
-  border: 1px solid rgba(107, 114, 128, 0.3);
-}
-
-.train-status-badge.training {
-  background: rgba(245, 158, 11, 0.2);
-  color: #f59e0b;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  animation: pulse 1.5s infinite;
-}
-
-.train-status-badge.success {
-  background: rgba(16, 185, 129, 0.2);
-  color: #10b981;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-.train-status-badge.error {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-.train-message {
-  font-size: 14px;
-  font-weight: 600;
-  opacity: 0.9;
-}
-
-/* Barre de progression */
-.train-progress-bar {
-  width: 100%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-
-.train-progress-fill {
-  height: 100%;
-  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
-  border-radius: 10px;
-  transition: width 0.4s ease;
-  box-shadow: 0 0 10px rgba(52, 65, 211, 0.5);
-}
-
-/* Statistiques rapides */
-.train-stats {
-  display: flex;
-  gap: 16px;
-  font-size: 12px;
-  opacity: 0.75;
-  font-weight: 500;
-}
-
-/* Bouton Relancer / Recharger */
-.btn-retry {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: inherit;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.btn-retry:hover {
-  background: rgba(255, 255, 255, 0.18);
-  transform: translateY(-2px);
-}
-
-/* Animation Pulse pour le statut en cours */
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-/* ==========================================
-   ADAPTATION POUR LE MODE LIGHT
-   ========================================== */
-.face-page[data-theme="light"] .train-banner,
-.search-page.light .train-banner {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(99, 102, 241, 0.15);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
-}
-
-.face-page[data-theme="light"] .train-progress-bar,
-.search-page.light .train-progress-bar {
-  background: rgba(0, 0, 0, 0.06);
-}
-
-.face-page[data-theme="light"] .btn-retry,
-.search-page.light .btn-retry {
-  background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.12);
-  color: #374151;
-}
-
-.train-banner,
-.results-card-body,
-.filter-bar {
-  /* Scrollbar fine pour Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
-}
-
-/* Chrome, Safari, Edge */
-.train-banner::-webkit-scrollbar,
-.results-card-body::-webkit-scrollbar,
-.filter-bar::-webkit-scrollbar {
-  width: 6px;
-  height: 6px; /* Pour le scroll horizontal */
-}
-
-.train-banner::-webkit-scrollbar-track,
-.results-card-body::-webkit-scrollbar-track,
-.filter-bar::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-.train-banner::-webkit-scrollbar-thumb,
-.results-card-body::-webkit-scrollbar-thumb,
-.filter-bar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-.train-banner::-webkit-scrollbar-thumb:hover,
-.results-card-body::-webkit-scrollbar-thumb:hover,
-.filter-bar::-webkit-scrollbar-thumb:hover {
-  background: #3441d3; /* Couleur d'accentuation au survol */
-}
-
-/* ==========================================
-   ADAPTATION POUR LE MODE LIGHT
-   ========================================== */
-.face-page[data-theme="light"] .train-banner,
-.face-page[data-theme="light"] .results-card-body,
-.face-page[data-theme="light"] .filter-bar,
-.search-page.light .train-banner,
-.search-page.light .results-card-body,
-.search-page.light .filter-bar {
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-}
-
-.face-page[data-theme="light"] ::-webkit-scrollbar-thumb,
-.search-page.light ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.face-page[data-theme="light"] ::-webkit-scrollbar-thumb:hover,
-.search-page.light ::-webkit-scrollbar-thumb:hover {
-  background: #3441d3;
-}
-
-/* ==========================================
-   1. REGLES DE SCROLLBARS GLOBALES & PAR COMPOSANTS
-   ========================================== */
-
-/* --- Scrollbar globale pour la page et tous ses éléments --- */
-.face-page,
-.face-page * {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
-}
-
-/* Chrome, Safari, Edge (Navigateurs WebKit) */
-.face-page ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px; /* Scrollbar horizontale */
-}
-
-.face-page ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-}
-
-.face-page ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.22);
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-.face-page ::-webkit-scrollbar-thumb:hover {
-  background: #3441d3; /* Accentuation Indigo au survol */
-}
-
-/* --- Scrollbar dédiée pour le corps du panneau de résultats (.results-card-body) --- */
-.results-card-body {
-  max-height: 520px;
-  overflow-y: auto;
-  padding-right: 6px; /* Espace pour éviter que la scrollbar ne chevauche le contenu */
-}
-
-/* --- Scrollbar dédiée pour la barre de filtres (.filter-bar) --- */
-.filter-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  padding: 8px 12px;
-  background: rgba(30, 35, 50, 0.4);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  overflow-x: auto; /* Active le défilement horizontal */
-}
-
-/* ==========================================
-   2. STYLES GÉNÉRAUX DE LA PAGE (CONTAINER)
-   ========================================== */
-.face-page {
-  min-height: 100vh;
-  padding: 24px;
-  background-color: #0b0f19;
-  color: #f3f4f6;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.logo-box {
-  font-size: 32px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 10px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.subtitle {
-  font-size: 13px;
-  opacity: 0.6;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.stats-breakdown {
-  display: flex;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.api-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-.dot.ok { background-color: #10b981; box-shadow: 0 0 8px #10b981; }
-.dot.loading { background-color: #f59e0b; }
-.dot.offline { background-color: #ef4444; }
-
-.theme-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: inherit;
-  padding: 8px 16px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.theme-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-}
-
-/* ==========================================
-   3. GRILLE ET CARTE CAMÉRA / RÉSULTATS
-   ========================================== */
-.main-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-@media (max-width: 900px) {
-  .main-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.camera-card, .results-card {
-  background: rgba(30, 35, 50, 0.5);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.camera-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: #000;
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.camera-frame video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Boutons & Contrôles */
-.filter-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: inherit;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.filter-btn.filter-active {
-  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: 0 4px 14px rgba(52, 65, 211, 0.4);
-}
-
-.btn-back {
-  margin-top: 16px;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: inherit;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 600;
-  width: fit-content;
-}
-
-/* ==========================================
-   4. ADAPTATION EN MODE LIGHT (THEME LIGHT)
-   ========================================== */
-.face-page[data-theme="light"] {
-  background-color: #f3f4f6;
-  color: #1f2937;
-}
-
-/* Adaptation Scrollbars Mode Clair */
-.face-page[data-theme="light"] * {
-  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
-}
-
-.face-page[data-theme="light"] ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.face-page[data-theme="light"] ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.face-page[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-  background: #3441d3;
-}
-
-.face-page[data-theme="light"] .camera-card,
-.face-page[data-theme="light"] .results-card,
-.face-page[data-theme="light"] .filter-bar {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.face-page[data-theme="light"] .filter-btn {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.1);
+  .main-grid { grid-template-columns: 1fr; }
+  header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .header-right { width: 100%; justify-content: space-between; }
+  .info-cards { grid-template-columns: 1fr; }
 }
