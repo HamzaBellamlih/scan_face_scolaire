@@ -9,6 +9,59 @@
   box-sizing: border-box;
 }
 
+/* ==========================================
+   PERSONNALISATION DE LA BARRE DE SCROLL (GLOBAL)
+   ========================================== */
+/* Largeur et hauteur de la barre */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Fond de la barre (Track) */
+::-webkit-scrollbar-track {
+  background: rgba(15, 17, 26, 0.8);
+}
+
+/* Curseur (Thumb) par défaut - Mode Dark */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  border: 2px solid rgba(15, 17, 26, 0.8);
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3441d3;
+}
+
+/* Ajustement de la Scrollbar pour le Mode Clair */
+.face-page[data-theme="light"]::-webkit-scrollbar-track,
+html:has(.face-page[data-theme="light"])::-webkit-scrollbar-track {
+  background: #e1e1e1;
+}
+
+.face-page[data-theme="light"]::-webkit-scrollbar-thumb,
+html:has(.face-page[data-theme="light"])::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px solid #e1e1e1;
+}
+
+.face-page[data-theme="light"]::-webkit-scrollbar-thumb:hover,
+html:has(.face-page[data-theme="light"])::-webkit-scrollbar-thumb:hover {
+  background: #3441d3;
+}
+
+/* Support pour Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(15, 17, 26, 0.8);
+}
+
+.face-page[data-theme="light"] * {
+  scrollbar-color: rgba(0, 0, 0, 0.25) #e1e1e1;
+}
+
 body, html {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
@@ -26,6 +79,7 @@ body, html {
   z-index: 1;
   transition: background 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
+  overflow-y: auto; /* Active le scroll vertical si nécessaire */
 }
 
 /* Mode Sombre (Dark) */
@@ -208,12 +262,15 @@ header h1 {
   align-items: center;
   gap: 10px;
   margin-bottom: 16px;
+  overflow-x: auto; /* Permet un scroll horizontal si trop de filtres sur petit écran */
+  padding-bottom: 4px;
 }
 
 .filter-label {
   font-size: 14px;
   font-weight: 600;
   opacity: 0.8;
+  white-space: nowrap;
 }
 
 .filter-btn {
@@ -227,6 +284,7 @@ header h1 {
   cursor: pointer;
   backdrop-filter: blur(10px);
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .face-page[data-theme="light"] .filter-btn {
@@ -452,6 +510,9 @@ header h1 {
 
 .results-card-body {
   min-height: 250px;
+  max-height: 500px;
+  overflow-y: auto; /* Permet un défilement propre à l'intérieur de la carte résultat si le contenu déborde */
+  padding-right: 4px;
 }
 
 /* Éstats vides & chargement */
