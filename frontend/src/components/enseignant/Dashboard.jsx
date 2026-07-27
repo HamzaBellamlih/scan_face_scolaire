@@ -17,7 +17,7 @@ export default function DashboardEnseignant() {
         return;
       }
       try {
-        const res  = await fetch(`http://127.0.0.1:8000/api/enseignant/${enseignantId}/`);
+        const res  = await fetch(`http://127.0.0.1:8008/api/enseignant/${enseignantId}/`);
         const text = await res.text();
         let data;
         try { data = JSON.parse(text); }
