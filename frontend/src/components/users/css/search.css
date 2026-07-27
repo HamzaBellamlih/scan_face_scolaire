@@ -1,4 +1,6 @@
-/* Import de la police Plus Jakarta Sans */
+/* ==========================================
+   IMPORTATION & CONFIGURATION DE BASE
+   ========================================== */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 * {
@@ -7,95 +9,83 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+body, html {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
 }
 
-/* Page */
+/* ==========================================
+   CONTAINER PRINCIPAL & EFFET PARTICULES
+   ========================================== */
 .search-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
   padding: 40px 20px;
   position: relative;
-  overflow-x: hidden;
+  z-index: 1;
   transition: all 0.5s ease;
+  overflow-y: auto;
 }
 
 /* Mode Dark */
 .search-page.dark {
   background: linear-gradient(135deg, #1e2232, #3a3f55);
+  color: #ffffff;
 }
 
 .search-page.dark::before {
   content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
     radial-gradient(2px 2px at 5% 10%, white, transparent),
     radial-gradient(1px 1px at 12% 25%, white, transparent),
-    radial-gradient(2px 2px at 8% 45%, white, transparent),
-    radial-gradient(1px 1px at 15% 60%, white, transparent),
-    radial-gradient(2px 2px at 10% 78%, white, transparent),
-    radial-gradient(1px 1px at 18% 88%, white, transparent),
     radial-gradient(2px 2px at 25% 15%, white, transparent),
-    radial-gradient(1px 1px at 28% 35%, white, transparent),
-    radial-gradient(2px 2px at 42% 8%, white, transparent),
-    radial-gradient(1px 1px at 48% 22%, white, transparent),
-    radial-gradient(2px 2px at 58% 12%, white, transparent),
-    radial-gradient(1px 1px at 62% 28%, white, transparent),
-    radial-gradient(2px 2px at 72% 18%, white, transparent),
-    radial-gradient(1px 1px at 78% 32%, white, transparent),
-    radial-gradient(2px 2px at 88% 20%, white, transparent),
-    radial-gradient(1px 1px at 92% 38%, white, transparent);
+    radial-gradient(1px 1px at 42% 8%, white, transparent),
+    radial-gradient(2px 2px at 65% 48%, white, transparent),
+    radial-gradient(1px 1px at 80% 65%, white, transparent),
+    radial-gradient(2px 2px at 90% 58%, white, transparent);
   background-size: 100% 200%;
-  background-position: 0% 100%;
   opacity: 0.4;
-  animation: searchParticleFloat 15s linear infinite;
+  animation: particleFloatUp 15s linear infinite;
   z-index: 0;
+  pointer-events: none;
 }
 
 /* Mode Light */
 .search-page.light {
   background: linear-gradient(135deg, #e1e1e1, #e0e7ff);
+  color: #1f2937;
 }
 
 .search-page.light::before {
   content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
     radial-gradient(2px 2px at 5% 10%, #000000, transparent),
     radial-gradient(1px 1px at 12% 25%, #000000, transparent),
-    radial-gradient(2px 2px at 8% 45%, #000000, transparent),
-    radial-gradient(1px 1px at 15% 60%, #000000, transparent),
     radial-gradient(2px 2px at 25% 15%, #000000, transparent),
-    radial-gradient(1px 1px at 28% 35%, #000000, transparent),
-    radial-gradient(2px 2px at 42% 8%, #000000, transparent),
-    radial-gradient(1px 1px at 48% 22%, #000000, transparent),
-    radial-gradient(2px 2px at 58% 12%, #000000, transparent),
-    radial-gradient(1px 1px at 62% 28%, #000000, transparent),
-    radial-gradient(2px 2px at 72% 18%, #000000, transparent),
-    radial-gradient(1px 1px at 78% 32%, #000000, transparent),
-    radial-gradient(2px 2px at 88% 20%, #000000, transparent),
-    radial-gradient(1px 1px at 92% 38%, #000000, transparent);
+    radial-gradient(1px 1px at 42% 8%, #000000, transparent),
+    radial-gradient(2px 2px at 65% 48%, #000000, transparent);
   background-size: 100% 200%;
-  background-position: 0% 100%;
   opacity: 0.3;
-  animation: searchParticleFloat 15s linear infinite;
+  animation: particleFloatUp 15s linear infinite;
   z-index: 0;
+  pointer-events: none;
 }
 
-@keyframes searchParticleFloat {
+@keyframes particleFloatUp {
   0% { background-position: 0% 100%; }
   100% { background-position: 0% 0%; }
 }
 
-/* Toggle Container (identique au choix-container) */
+/* ==========================================
+   TOGGLE SWITCH (DARK / LIGHT)
+   ========================================== */
 .toggle-container {
   position: absolute;
   top: 30px;
@@ -123,10 +113,7 @@ body {
 .toggle-slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
   transition: 0.4s;
   border-radius: 34px;
@@ -146,193 +133,186 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.toggle-switch input:checked + .toggle-slider {
+input:checked + .toggle-slider {
   background: linear-gradient(135deg, #1310b9 0%, #343ed3 100%);
 }
 
-.toggle-switch input:checked + .toggle-slider:before {
+input:checked + .toggle-slider:before {
   transform: translateX(26px);
 }
 
-/* Container principal */
+/* ==========================================
+   CARTE PRINCIPALE DE RECHERCHE
+   ========================================== */
 .search-container {
+  width: 100%;
+  max-width: 650px;
+  background: rgba(30, 35, 50, 0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
-  z-index: 1;
-  max-width: 640px;
-  margin: 0 auto;
+  z-index: 2;
+  animation: fadeIn 0.6s ease-out;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  animation: searchFadeIn 0.6s ease-out;
+  gap: 24px;
 }
 
-@keyframes searchFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.search-page.light .search-container {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.15);
 }
 
 .search-title {
   font-size: 28px;
   font-weight: 700;
-  color: #ffffff;
   text-align: center;
   letter-spacing: -0.5px;
-  margin-bottom: 32px;
 }
 
 .search-page.light .search-title {
   color: #1f2937;
 }
 
-/* Boutons de type */
+/* ==========================================
+   BOUTONS DE SÉLECTION DU TYPE
+   ========================================== */
 .search-type-buttons {
   display: flex;
   gap: 12px;
-  width: 100%;
-  margin-bottom: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .search-type-buttons button {
   flex: 1;
-  padding: 14px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-width: 120px;
+  padding: 12px 16px;
   border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  letter-spacing: -0.2px;
 }
 
 .search-type-buttons button:hover {
   transform: translateY(-2px);
 }
 
-/* Zone de recherche */
+.search-page.light .search-type-buttons button {
+  background: rgba(240, 242, 255, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* ==========================================
+   CHAMP ET BOUTON DE RECHERCHE
+   ========================================== */
 .search-input-group {
   display: flex;
   gap: 12px;
-  width: 100%;
-  margin-bottom: 20px;
 }
 
 .search-input {
   flex: 1;
-  padding: 16px;
-  font-size: 15px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+  padding: 14px 18px;
+  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+  background: rgba(20, 24, 38, 0.6);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
   outline: none;
   transition: all 0.3s ease;
 }
 
-.search-page.light .search-input {
-  color: #1f2937;
-  background: rgba(99, 102, 241, 0.05);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-}
-
-.search-input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.search-page.light .search-input::placeholder {
-  color: rgba(31, 41, 55, 0.4);
-}
-
 .search-input:focus {
-  border-color: #818cf8;
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+  border-color: #3441d3;
+  box-shadow: 0 0 12px rgba(52, 65, 211, 0.4);
+}
+
+.search-page.light .search-input {
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .btn-search {
-  padding: 16px 24px;
-  font-size: 15px;
-  font-weight: 600;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #ffffff;
-  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  padding: 14px 24px;
+  border-radius: 14px;
   border: none;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  white-space: nowrap;
-  letter-spacing: -0.2px;
-  box-shadow: 0 12px 24px rgba(52, 65, 211, 0.35);
+  box-shadow: 0 4px 12px rgba(16, 19, 185, 0.3);
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .btn-search:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 16px 32px rgba(52, 65, 211, 0.5);
+  box-shadow: 0 8px 20px rgba(52, 65, 211, 0.5);
 }
 
 .btn-search:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
-  transform: none;
 }
 
-/* Message d'erreur */
+/* ==========================================
+   MESSAGE D'ERREUR
+   ========================================== */
 .error-message {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #f87171;
-  background: rgba(248, 113, 113, 0.1);
-  border: 1px solid rgba(248, 113, 113, 0.25);
-  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #ef4444;
   padding: 12px 16px;
-  margin-bottom: 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
 }
 
-/* Carte de résultat (glassmorphism) */
+/* ==========================================
+   CARTE DE RÉSULTAT ET TABLEAU
+   ========================================== */
 .result-card {
-  width: 100%;
-  background: rgba(30, 35, 50, 0.85);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 24px;
-  animation: searchFadeIn 0.4s ease-out;
+  border-radius: 16px;
+  padding: 24px;
+  animation: fadeIn 0.4s ease-out;
 }
 
 .search-page.light .result-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.15);
+  background: rgba(248, 249, 255, 0.9);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .result-name {
   font-size: 22px;
   font-weight: 700;
-  color: #ffffff;
-  text-align: center;
-  letter-spacing: -0.3px;
   margin-bottom: 4px;
-}
-
-.search-page.light .result-name {
-  color: #1f2937;
+  text-align: center;
 }
 
 .result-type {
-  text-align: center;
   font-size: 14px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 24px;
-}
-
-.search-page.light .result-type {
-  color: rgba(31, 41, 55, 0.6);
+  font-weight: 600;
+  opacity: 0.75;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .result-table {
@@ -340,77 +320,91 @@ body {
   border-collapse: collapse;
 }
 
-.result-table tr {
+.result-table td {
+  padding: 10px 12px;
+  font-size: 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.search-page.light .result-table tr {
-  border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+.search-page.light .result-table td {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
-.result-table tr:last-child {
+.result-table tr:last-child td {
   border-bottom: none;
 }
 
-.result-table td {
-  padding: 14px 8px;
-  font-size: 14px;
-  color: #ffffff;
-}
-
-.search-page.light .result-table td {
-  color: #1f2937;
-}
-
 .result-table td:first-child {
-  color: rgba(255, 255, 255, 0.6);
   width: 45%;
+  font-weight: 600;
+  opacity: 0.9;
 }
 
-.search-page.light .result-table td:first-child {
-  color: rgba(31, 41, 55, 0.6);
+.result-table td:last-child {
+  font-weight: 500;
 }
 
-/* Bouton retour */
+/* ==========================================
+   BOUTON RETOUR
+   ========================================== */
 .btn-retour {
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.6);
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: inherit;
+  padding: 10px 20px;
+  border-radius: 12px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.search-page.light .btn-retour {
-  color: rgba(31, 41, 55, 0.6);
+  transition: all 0.3s ease;
+  margin-top: 8px;
 }
 
 .btn-retour:hover {
-  color: #818cf8;
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateX(-4px);
 }
 
-/* Responsive */
+.search-page.light .btn-retour {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.search-page.light .btn-retour:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   ANIMATIONS & RESPONSIVE
+   ========================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 640px) {
-  .search-type-buttons {
-    flex-direction: column;
+  .search-container {
+    padding: 24px;
   }
 
   .search-input-group {
     flex-direction: column;
   }
 
-  .search-title {
-    font-size: 24px;
+  .btn-search {
+    width: 100%;
   }
 
   .toggle-container {
-    top: 20px;
-    right: 20px;
-  }
-
-  .result-card {
-    padding: 24px 20px;
+    top: 15px;
+    right: 15px;
   }
 }
