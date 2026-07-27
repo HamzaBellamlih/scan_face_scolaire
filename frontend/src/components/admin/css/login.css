@@ -60,7 +60,6 @@
     background:var(--bg);
     transition:.4s;
     font-family:var(--font);
-    width:100%;
 }
 
 /* Background animation */
