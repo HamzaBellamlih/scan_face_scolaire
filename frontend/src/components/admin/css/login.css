@@ -75,7 +75,6 @@
     radial-gradient(circle at 40% 90%,rgba(255,255,255,.08) 2px,transparent 2px);
     background-size:220px 220px;
     animation:moveBackground 18s linear infinite;
-    width:100%;
 }
 
 @keyframes moveBackground{
