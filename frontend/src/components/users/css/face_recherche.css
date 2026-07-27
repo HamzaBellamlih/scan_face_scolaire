@@ -618,3 +618,91 @@ header h1 {
     justify-content: space-between;
   }
 }
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  background: rgba(30, 35, 50, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow-x: auto; /* Permet le défilement horizontal sur mobile */
+  scrollbar-width: none; /* Cache la scrollbar sur Firefox */
+}
+
+/* Cache la scrollbar sur Chrome/Safari */
+.filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Label "Filtrer :" */
+.filter-label {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.85;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+/* Boutons de filtre de base */
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: inherit;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* État Actif du bouton */
+.filter-btn.filter-active {
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(52, 65, 211, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   ADAPTATION POUR LE MODE LIGHT
+   ========================================== */
+.face-page[data-theme="light"] .filter-bar,
+.search-page.light .filter-bar {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(99, 102, 241, 0.15);
+}
+
+.face-page[data-theme="light"] .filter-btn,
+.search-page.light .filter-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #374151;
+}
+
+.face-page[data-theme="light"] .filter-btn:hover,
+.search-page.light .filter-btn:hover {
+  background: #ffffff;
+  border-color: #3441d3;
+  color: #3441d3;
+}
+
+.face-page[data-theme="light"] .filter-btn.filter-active,
+.search-page.light .filter-btn.filter-active {
+  background: linear-gradient(135deg, #1013b9 0%, #3441d3 100%);
+  color: #ffffff;
+  border-color: transparent;
+}
