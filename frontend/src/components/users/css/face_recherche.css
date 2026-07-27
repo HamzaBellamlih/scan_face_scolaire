@@ -864,3 +864,58 @@ header h1 {
 .search-page.light .btn-retry:hover {
   background: rgba(0, 0, 0, 0.1);
 }
+
+.train-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+}
+
+/* 1. IDLE (En attente) */
+.train-status.idle {
+  background: rgba(107, 114, 128, 0.15);
+  color: #9ca3af;
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+/* 2. TRAINING (En cours d'entraînement) */
+.train-status.training {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  animation: pulseStatus 1.5s infinite ease-in-out;
+}
+
+/* 3. SUCCESS (Entraînement réussi) */
+.train-status.success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+/* 4. ERROR (Échec) */
+.train-status.error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+/* Animation de clignotement pour le chargement */
+@keyframes pulseStatus {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+}
