@@ -53,7 +53,6 @@ body {
 
 .login-container{
     min-height:100vh;
-    border-radius:var(--radius);
     display:flex;
     width: 100vw;
     height: 100vh;
@@ -101,13 +100,14 @@ body {
     z-index:2;
     max-width:430px;
     padding:45px;
-    border-radius:var(--radius);
+    border-radius:25px;
     background:var(--card);
     border:1px solid var(--border);
     backdrop-filter:blur(25px);
     box-shadow:
     0 25px 60px var(--shadow);
     animation:fadeUp .8s;
+
 }
 
 @keyframes fadeUp{
