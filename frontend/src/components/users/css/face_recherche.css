@@ -749,3 +749,61 @@ header h1 {
   .header-right { width: 100%; justify-content: space-between; }
   .info-cards { grid-template-columns: 1fr; }
 }
+
+/* ==========================================
+   SCROLLBAR SPÉCIFIQUE POUR .FACE-PAGE
+   ========================================== */
+
+/* --- 1. Firefox --- */
+.face-page,
+.face-page * {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(15, 17, 26, 0.8);
+}
+
+.face-page[data-theme="light"],
+.face-page[data-theme="light"] * {
+  scrollbar-color: rgba(0, 0, 0, 0.25) #e1e1e1;
+}
+
+/* --- 2. Chrome, Safari, Edge (WebKit) - Mode Sombre (Par défaut) --- */
+.face-page::-webkit-scrollbar,
+.face-page *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.face-page::-webkit-scrollbar-track,
+.face-page *::-webkit-scrollbar-track {
+  background: rgba(15, 17, 26, 0.8);
+}
+
+.face-page::-webkit-scrollbar-thumb,
+.face-page *::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  border: 2px solid rgba(15, 17, 26, 0.8);
+  transition: background 0.3s ease;
+}
+
+.face-page::-webkit-scrollbar-thumb:hover,
+.face-page *::-webkit-scrollbar-thumb:hover {
+  background: #3441d3;
+}
+
+/* --- 3. Chrome, Safari, Edge (WebKit) - Mode Clair --- */
+.face-page[data-theme="light"]::-webkit-scrollbar-track,
+.face-page[data-theme="light"] *::-webkit-scrollbar-track {
+  background: #e1e1e1;
+}
+
+.face-page[data-theme="light"]::-webkit-scrollbar-thumb,
+.face-page[data-theme="light"] *::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px solid #e1e1e1;
+}
+
+.face-page[data-theme="light"]::-webkit-scrollbar-thumb:hover,
+.face-page[data-theme="light"] *::-webkit-scrollbar-thumb:hover {
+  background: #3441d3;
+}
