@@ -1,329 +1,285 @@
-/* ==========================================================================
-   1. IMPORTS & VARIABLES CENTRALISÉES
-   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-:root {
-  /* Typographie & Transitions */
-  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --transition-speed: 0.3s;
-  --radius-btn: 30px;
-  --radius-box: 24px;
-
-  /* Thème Dark (Par défaut) */
-  --bg-gradient: linear-gradient(135deg, #1e2232, #3a3f55);
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --box-bg: rgba(30, 35, 50, 0.85);
-  --box-border: rgba(255, 255, 255, 0.1);
-  --shadow-color: rgba(0, 0, 0, 0.4);
-  
-  /* Couleurs d'accentuation */
-  --accent-primary: #6366f1;
-  --accent-secondary: #4f46e5;
-  --particle-color: #ffffff;
-  --particle-opacity: 0.4;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* Thème Light */
-.login-container.light {
-  --bg-gradient: linear-gradient(135deg, #e1e1e1, #e0e7ff);
-  --text-primary: #1f2937;
-  --text-secondary: rgba(31, 41, 55, 0.6);
-  --box-bg: rgba(255, 255, 255, 0.9);
-  --box-border: rgba(99, 102, 241, 0.2);
-  --shadow-color: rgba(99, 102, 241, 0.15);
-  
-  --particle-color: #000000;
-  --particle-opacity: 0.2;
+:root{
+    --transition:.3s;
+    --radius:24px;
+    --radius-btn:50px;
+    --font:'Plus Jakarta Sans',sans-serif;
 }
 
-/* ==========================================================================
-   2. RESET & STYLES DE BASE
-   ========================================================================== */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ==============================
+        DARK MODE
+================================= */
+
+.login-container.dark-mode{
+    --bg:linear-gradient(135deg,#0f172a,#1e293b);
+    --card:rgba(15,23,42,.75);
+    --border:rgba(255,255,255,.08);
+    --text:#fff;
+    --text2:#b8c0d4;
+    --input:#334155;
+    --shadow:rgba(0,0,0,.45);
+    --primary:#6366f1;
+    --secondary:#4f46e5;
 }
 
-body {
-  font-family: var(--font-main);
-  height: 100vh;
-  overflow: hidden;
+/* ==============================
+        LIGHT MODE
+================================= */
+
+.login-container.light-mode{
+    --bg:linear-gradient(135deg,#eef4ff,#dbeafe);
+    --card:rgba(255,255,255,.85);
+    --border:rgba(99,102,241,.12);
+    --text:#1f2937;
+    --text2:#6b7280;
+    --input:#cbd5e1;
+    --shadow:rgba(30,41,59,.12);
+    --primary:#6366f1;
+    --secondary:#4f46e5;
 }
 
-/* ==========================================================================
-   3. CONTENEUR PRINCIPAL & FOND ANIME
-   ========================================================================== */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  padding: 20px;
-  position: relative;
-  background: var(--bg-gradient);
-  z-index: 1;
-  transition: background var(--transition-speed) ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.12) rgba(255, 255, 255, 0.03);
+/* ==============================
+        CONTAINER
+================================= */
+
+.login-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+    background:var(--bg);
+    transition:.4s;
+    font-family:var(--font);
 }
 
-.login-container::-webkit-scrollbar {
-  width: 8px;
-}
-.login-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
-}
-.login-container::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
+/* Background animation */
+
+.login-container::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+    radial-gradient(circle at 10% 20%,rgba(255,255,255,.08) 2px,transparent 2px),
+    radial-gradient(circle at 80% 70%,rgba(255,255,255,.08) 2px,transparent 2px),
+    radial-gradient(circle at 40% 90%,rgba(255,255,255,.08) 2px,transparent 2px);
+    background-size:220px 220px;
+    animation:moveBackground 18s linear infinite;
 }
 
-/* Effet de particules (Consistant avec le reste de l'application) */
-.login-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(2px 2px at 5% 10%, var(--particle-color), transparent),
-    radial-gradient(1px 1px at 12% 25%, var(--particle-color), transparent),
-    radial-gradient(2px 2px at 8% 45%, var(--particle-color), transparent),
-    radial-gradient(1px 1px at 15% 60%, var(--particle-color), transparent),
-    radial-gradient(2px 2px at 25% 15%, var(--particle-color), transparent),
-    radial-gradient(1px 1px at 28% 35%, var(--particle-color), transparent),
-    radial-gradient(2px 2px at 42% 8%, var(--particle-color), transparent),
-    radial-gradient(1px 1px at 48% 22%, var(--particle-color), transparent),
-    radial-gradient(2px 2px at 65% 48%, var(--particle-color), transparent),
-    radial-gradient(1px 1px at 78% 32%, var(--particle-color), transparent),
-    radial-gradient(2px 2px at 88% 20%, var(--particle-color), transparent),
-    radial-gradient(1px 1px at 95% 70%, var(--particle-color), transparent);
-  background-size: 100% 200%;
-  opacity: var(--particle-opacity);
-  animation: particleFloatUp 15s linear infinite;
-  z-index: 0;
-  pointer-events: none;
+@keyframes moveBackground{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-220px);
+    }
 }
 
-@keyframes particleFloatUp {
-  0% { background-position: 0% 100%; }
-  100% { background-position: 0% 0%; }
+/* ==============================
+      LOGIN BOX
+================================= */
+
+.login-box{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:430px;
+    padding:45px;
+    border-radius:var(--radius);
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(25px);
+    box-shadow:
+    0 25px 60px var(--shadow);
+    animation:fadeUp .8s;
 }
 
-/* ==========================================================================
-   4. INTERRUPTEUR DE THÈME (THEME TOGGLE)
-   ========================================================================== */
-.theme-toggle {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  background: var(--box-bg);
-  border: 1px solid var(--box-border);
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--text-primary);
-  box-shadow: 0 4px 12px var(--shadow-color);
-  backdrop-filter: blur(20px);
-  transition: transform var(--transition-speed) ease, border-color var(--transition-speed) ease;
-  z-index: 10;
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-.theme-toggle:hover {
-  border-color: var(--accent-primary);
-  transform: rotate(180deg) scale(1.05);
+.login-box h2{
+    text-align:center;
+    color:var(--text);
+    margin-bottom:35px;
+    font-size:32px;
+    font-weight:700;
 }
 
-.theme-toggle svg {
-  transition: transform var(--transition-speed) ease;
+/* ==============================
+      INPUTS
+================================= */
+
+.input-group{
+    position:relative;
+    margin-bottom:28px;
 }
 
-/* ==========================================================================
-   5. FORMULAIRE DE CONNEXION (LOGIN BOX)
-   ========================================================================== */
-.login-box {
-  position: relative;
-  z-index: 1;
-  background: var(--box-bg);
-  padding: 48px 40px;
-  border-radius: var(--radius-box);
-  box-shadow: 0 25px 50px var(--shadow-color);
-  width: 100%;
-  max-width: 420px;
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--box-border);
-  animation: fadeInUp 0.6s ease-out;
+.input-group input{
+    width:100%;
+    padding:16px 0;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:var(--text);
+    font-size:16px;
+    border-bottom:2px solid var(--input);
+    transition:.3s;
 }
 
-.login-box h2 {
-  text-align: center;
-  color: var(--text-primary);
-  margin-bottom: 36px;
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+.input-group input:focus{
+    border-bottom-color:var(--primary);
 }
 
-/* Input avec labels flottants */
-.input-group {
-  position: relative;
-  margin-bottom: 30px;
+.input-group label{
+    position:absolute;
+    left:0;
+    top:15px;
+    color:var(--text2);
+    pointer-events:none;
+    transition:.3s;
 }
 
-.input-group input {
-  width: 100%;
-  padding: 12px 0;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--text-primary);
-  font-family: var(--font-main);
-  font-size: 16px;
-  border-bottom: 2px solid var(--box-border);
-  transition: border-color var(--transition-speed) ease;
+.input-group input:focus+label,
+.input-group input:not(:placeholder-shown)+label{
+    top:-10px;
+    font-size:12px;
+    color:var(--primary);
+    font-weight:600;
 }
 
-.input-group input:focus,
-.input-group input:not(:placeholder-shown) {
-  border-bottom-color: var(--accent-primary);
+/* ==============================
+      BUTTON
+================================= */
+
+.submit-btn{
+    width:100%;
+    border:none;
+    padding:15px;
+    cursor:pointer;
+    border-radius:var(--radius-btn);
+    color:white;
+    font-weight:700;
+    font-size:15px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    transition:.3s;
+    margin-top:10px;
 }
 
-.input-group label {
-  position: absolute;
-  left: 0;
-  top: 12px;
-  color: var(--text-secondary);
-  font-size: 15px;
-  font-weight: 500;
-  pointer-events: none;
-  transition: all var(--transition-speed) ease;
+.submit-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(99,102,241,.35);
 }
 
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
-  top: -10px;
-  font-size: 12px;
-  color: var(--accent-primary);
-  font-weight: 600;
+/* ==============================
+      MESSAGE
+================================= */
+
+.message{
+    margin-top:18px;
+    padding:14px;
+    border-radius:12px;
+    text-align:center;
+    font-size:14px;
+    font-weight:600;
 }
 
-/* ==========================================================================
-   6. BOUTONS & MESSAGES
-   ========================================================================== */
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  border: none;
-  border-radius: var(--radius-btn);
-  color: #ffffff;
-  font-family: var(--font-main);
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.message.error{
+    background:#ef444420;
+    color:#ef4444;
+    border:1px solid #ef444460;
 }
 
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px var(--shadow-color);
+/* ==============================
+      BACK BUTTON
+================================= */
+
+.back-button{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    cursor:pointer;
+    border-radius:var(--radius-btn);
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--text);
+    font-weight:600;
+    transition:.3s;
 }
 
-.submit-btn:active {
-  transform: translateY(0);
+.back-button:hover{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    border-color:transparent;
 }
 
-.back-button {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  border: 1px solid var(--box-border);
-  border-radius: var(--radius-btn);
-  color: var(--text-primary);
-  font-family: var(--font-main);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 12px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  transition: all var(--transition-speed) ease;
+/* ==============================
+      THEME BUTTON
+================================= */
+
+.theme-toggle{
+    position:absolute;
+    top:30px;
+    right:30px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    backdrop-filter:blur(20px);
+    z-index:5;
+    transition:.35s;
 }
 
-.back-button:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-  background: rgba(99, 102, 241, 0.08);
-  transform: translateY(-2px);
+.theme-toggle:hover{
+    transform:rotate(180deg) scale(1.08);
+    border-color:var(--primary);
 }
 
-.back-button:active {
-  transform: translateY(0);
-}
+/* ==============================
+      RESPONSIVE
+================================= */
 
-.message {
-  text-align: center;
-  margin-top: 20px;
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 14px;
-  color: var(--text-primary);
-  background: var(--box-bg);
-  border: 1px solid var(--box-border);
-  animation: slideIn 0.3s ease;
-}
+@media(max-width:600px){
 
-/* ==========================================================================
-   7. ANIMATIONS & RESPONSIVE
-   ========================================================================== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 480px) {
-  .login-box {
-    padding: 36px 24px;
+  .login-box{
+    padding:35px 25px;
   }
 
-  .login-box h2 {
-    font-size: 24px;
-    margin-bottom: 28px;
+  .login-box h2{
+    font-size:28px;
   }
 
-  .theme-toggle {
-    top: 20px;
-    right: 20px;
-    width: 42px;
-    height: 42px;
+  .theme-toggle{
+    width:48px;
+    height:48px;
+    top:20px;
+    right:20px;
   }
 }
