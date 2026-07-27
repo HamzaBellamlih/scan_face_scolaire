@@ -410,7 +410,8 @@ export default function FaceRecognitionPage() {
     window.history.back();
   };
   return (
-    <div className="face-page" data-theme={isDarkMode ? "dark" : "light"}>
+    <div className="face-page" data-theme={isDarkMode ? "dark" : "light"}
+            style={{ maxHeight: "100vh", overflowY: "auto" }}>
 
       <header>
         <div className="header-left">
@@ -438,7 +439,6 @@ export default function FaceRecognitionPage() {
           </div>
           <button className="theme-btn" onClick={() => setIsDarkMode(!isDarkMode)}>
             {isDarkMode ? "☀️ Mode Clair" : "🌙 Mode Sombre"}
-            style={{ maxHeight: "100vh", overflowY: "auto" }}
           </button>
         </div>
       </header>
