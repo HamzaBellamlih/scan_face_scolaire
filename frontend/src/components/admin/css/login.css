@@ -106,7 +106,6 @@
     box-shadow:
     0 25px 60px var(--shadow);
     animation:fadeUp .8s;
-    width:100%;
 }
 
 @keyframes fadeUp{
